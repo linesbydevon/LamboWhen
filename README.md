@@ -92,11 +92,13 @@ After a successful connection is made, the next priority will be determining wha
 
 ## TRELLO BOARD
 
-My Trello board for this project can be [found here](https://trello.com/invite/b/rPiDi0oT/67a3ee1760ee709d29f385ca3ec19a67/knights-tour-project).
+My Trello board for this project can be [found here](https://trello.com/b/AOKz1Nkf/lambowhen).
 
 ## WIREFRAMES
 
 Below I've included initial concepting (subject to change).
-![Wireframe layout for larger screens](./whiteboarding/img/wireframe_desktop.jpg)
-![Wireframe layout for narrower screens](./whiteboarding/img/wireframe_mobile.jpg)
+![Home](./proposalAssets/img/landing.png)
+![Goal input](./proposalAssets/img/setGoal.png)
+![Select coins input](./proposalAssets/img/setCoins.png)
+![Results](./proposalAssets/img/results.png)
 
