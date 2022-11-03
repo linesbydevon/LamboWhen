@@ -1,10 +1,6 @@
 # LamboWhen
 An app for accessing data related to your crypto portfolio goals
 
-## Context
-> A cryptocurrency, crypto-currency, or crypto is a digital currency designed to work as a medium of exchange through a computer network that is not reliant on any central authority, such as a government or bank, to uphold or maintain it. It is a decentralized system for verifying that the parties to a transaction have the money they claim to have, eliminating the need for traditional intermediaries, such as banks, when funds are being transferred between two entities
-- From the [Wikipedia article on Cryptocurrency](https://en.wikipedia.org/wiki/Knight%27s_tour)
-
 ## Proposal
 I want to develop an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of users.
 
