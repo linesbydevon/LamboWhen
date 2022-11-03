@@ -102,3 +102,11 @@ Below I've included initial concepting (subject to change).
 ![Select coins input](./proposalAssets/img/setCoins.png)
 ![Results](./proposalAssets/img/results.png)
 
+### With component mapping
+
+TBD
+
+## Component frameworks I intend to use
+
+[React Sparklines](https://github.com/borisyankov/react-sparklines) enables easy svg rendering of sparklines from an array of data points. 
+
