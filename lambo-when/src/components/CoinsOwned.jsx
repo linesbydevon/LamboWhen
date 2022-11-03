@@ -9,28 +9,25 @@ export default function CoinsOwned(props){
     localState[index].selected=!localState[index].selected;
     console.log(localState[index]);
     props.setCoins(localState);
+    e.currentTarget.classList.toggle("selected")
   }
   return(
     <main>
       <h2>Please select all coins you own from this list:</h2>
       
     {
-      coins ?  
+      props.coins.length ?  
       coins.map(
         (coin,index)=>
         <div className={`card ${coin.symbol}card`} key={coin.symbol} id={index} onClick={handleClick}>
         <div className="iconContainer">
         <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/>
+        <div className="check"></div>
         </div>
-        <h2 style={{color: coin.color}}>{coin.name}</h2>
-        <h3>{coin.symbol}</h3>
-        <p>${parseFloat(coin.price).toFixed(2)}</p>
-        <Sparklines data={coin.sparkline}>
-          <SparklinesLine color={coin.sparkline[23]>coin.sparkline[0]? "green":"red"} />
-        </Sparklines>
+        <h3>{coin.name} | <span>{coin.symbol}</span></h3>
         </div>
       ):
-    <h1>No coins</h1>
+    <p>No coins</p>
     }
     </main>
   )
