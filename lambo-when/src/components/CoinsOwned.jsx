@@ -1,4 +1,4 @@
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import CoinCard from "./CoinCard";
 
 export default function CoinsOwned(props){
   let coins=props.coins;
@@ -19,13 +19,7 @@ export default function CoinsOwned(props){
       props.coins.length ?  
       coins.map(
         (coin,index)=>
-        <div className={`card ${coin.symbol}card`} key={coin.symbol} id={index} onClick={handleClick}>
-        <div className="iconContainer">
-        <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/>
-        <div className="check"></div>
-        </div>
-        <h3>{coin.name} | <span>{coin.symbol}</span></h3>
-        </div>
+        <CoinCard coin={coin} index={index} handleClick={handleClick}/>
       ):
     <p>No coins</p>
     }
