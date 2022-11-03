@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import {BASE_URL} from './global.js';
+import {Route, Routes, Link} from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import APIErrorGaurd from './components/APIErrorGaurd.jsx';
@@ -65,8 +66,10 @@ function App() {
         
         <APIErrorGaurd APIError={APIError}></APIErrorGaurd>:
         <>
-      <Home goal={goal} setGoal={setGoal}/>
-      <CoinsOwned coins={coins} setCoins={setCoins}></CoinsOwned>
+      <Routes>
+        <Route exact path="/" element={<Home goal={goal} setGoal={setGoal}/>}/>
+        <Route exact path="/selectcoins" element={<CoinsOwned coins={coins} setCoins={setCoins}/>}/>
+      </Routes>
       </>
       }
       

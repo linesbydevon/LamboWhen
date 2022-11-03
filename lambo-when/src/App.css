@@ -4,12 +4,18 @@
   box-sizing: border-box;
 }
 
+html{
+  --black: 8, 10, 12;
+  background: rgba(var(--black),1)
+}
+
 body{
-  background: dimgrey;
   padding: 32px 8px;
+  color: whitesmoke;
 }
 
 .card{
+  color: rgba(var(--black),1);
   width: 100%;
   max-width: 400px;
   padding: 8px;

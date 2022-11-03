@@ -1,4 +1,5 @@
 import CoinCard from "./CoinCard";
+import { Link } from "react-router-dom";
 
 export default function CoinsOwned(props){
   let coins=props.coins;
@@ -17,10 +18,15 @@ export default function CoinsOwned(props){
       
     {
       props.coins.length ?  
+      <>{
       coins.map(
         (coin,index)=>
         <CoinCard coin={coin} index={index} handleClick={handleClick}/>
-      ):
+      )
+      }
+      <Link to="/setquantity">Move on</Link>
+      </>
+      :
     <p>No coins</p>
     }
     </main>
