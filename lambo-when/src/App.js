@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {BASE_URL} from './global.js';
 import Header from './components/Header';
 import Home from './components/Home';
+import APIErrorGaurd from './components/APIErrorGaurd.jsx';
 import CoinsOwned from './components/CoinsOwned.jsx';
 import './App.css';
 
@@ -10,12 +11,12 @@ function App() {
   const [goal, setGoal] = useState(0)
   const [allCoinsList, setAllCoinsList] = useState([]);
   const [coins,setCoins] = useState([]);
-  const [APIError, setAPIError] = useState([]);
+  const [APIError, setAPIError] = useState(false);
   useEffect(
     ()=>{
       const options = {
         method: 'GET',
-        url: 'https://coinranking1.p.rapidapi.com/coins',
+        url: 'https://coinranking1.p.rapidapi.com/coin',
         params: {
           referenceCurrencyUuid: 'yhjMzLPhuIDl',
           timePeriod: '24h',
@@ -49,8 +50,16 @@ function App() {
   return (
     <div className="App">
       <Header/>
+      {
+        APIError ?
+        
+        <APIErrorGaurd APIError={APIError}></APIErrorGaurd>:
+        <>
       <Home goal={goal} setGoal={setGoal}/>
       <CoinsOwned coins={coins} setCoins={setCoins}></CoinsOwned>
+      </>
+      }
+      
     </div>
   );
   }
