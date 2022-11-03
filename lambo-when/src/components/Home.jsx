@@ -13,7 +13,7 @@ export default function Home(props){
       </form>
       <Link to="/selectcoins">
         Get Started
-        </Link>
+      </Link>
     </main>
   )  
 

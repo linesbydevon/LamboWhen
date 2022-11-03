@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {BASE_URL} from './global.js';
 import Header from './components/Header';
 import Home from './components/Home';
+import CoinsOwned from './components/CoinsOwned.jsx';
 import './App.css';
 
 function App() {
@@ -44,11 +45,12 @@ function App() {
       
     },[]
   )
-  console.log(APIError)
+  console.log(coins)
   return (
     <div className="App">
       <Header/>
       <Home goal={goal} setGoal={setGoal}/>
+      <CoinsOwned coins={coins} setCoins={setCoins}></CoinsOwned>
     </div>
   );
   }
