@@ -6,9 +6,7 @@ export default function CoinsQTY(props){
   let coins=props.coins;
   
 const handleChange = (e)=>{
-  let id= e.currentTarget.id;
-  let index = parseInt(id[id.length-1]);
-  console.log(index)
+  let index= e.currentTarget.id;
   let localState = [...coins];
   localState[index].qty=parseInt(e.target.value);
   console.log(localState)
@@ -17,7 +15,24 @@ const handleChange = (e)=>{
 
 const handleLinkClick=(e)=>{
   if(props.coins.filter(coin=>coin.selected===true).every(coin=>coin.qty>0)){
-    console.log("QTY good")
+    //declaring and updating holdingsValue and holdingsSparkline of local copy of props.coins
+    let localState = [...props.coins];
+    localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsValue=parseFloat(coin.price)*coin.qty);
+    localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsSparkline=coin.sparkline.map(elem=>elem*coin.qty));
+    props.setCoins(localState);
+    //
+    let localPortfolio= {...props.portfolio};
+    localPortfolio.value=0;
+    localPortfolio.sparkline.fill(0,0,25);
+    localState.filter(coin=>coin.selected===true).forEach(coin=>localPortfolio.value+=coin.holdingsValue);
+    localState.filter(coin=>coin.selected===true).forEach(coin=>{
+          for(let i=0; i < coin.sparkline.length; i++){
+            localPortfolio.sparkline[i]+=coin.holdingsSparkline[i];
+          }
+        }
+      );
+    console.log(localPortfolio);
+    props.setPortfolio(localPortfolio);
   }else{
     console.log("QTY not set")
     e.preventDefault();
@@ -48,10 +63,10 @@ const handleLinkClick=(e)=>{
         </div>
         <div className="btnWrapper">
           <ProgressButton 
-            className={props.coins.some(coin=>coin.selected === true) ? "clickable btn":"notClickable btn"} 
+            className={props.coins.filter(coin=>coin.selected===true).every(coin=>coin.qty>0) ? "clickable btn":"notClickable btn"} 
             handleLinkClick={handleLinkClick}
             href='/results'
-            disabledMessage="Add coins"
+            disabledMessage="Set amounts"
             engagedMessage="All set?" />
         </div>
       </section>

@@ -3,7 +3,7 @@ export default function CoinCardForm(props){
   let index=props.index;
   let handleChange=props.handleChange;
   return(
-    <div className={`cardForm ${coin.symbol}card`} key={coin.symbol} id={index}>
+    <div className={`cardForm ${coin.symbol}card`} key={coin.symbol}>
       <div className="coinInfo">
         <div className="iconContainer">
           <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/>
@@ -13,7 +13,7 @@ export default function CoinCardForm(props){
       </div>
       <form>
         <label htmlFor="qty">How many {coin.symbol}s do you own?</label>
-        <input id={`input${index}`} type="number" placeholder={props.coin.qty} onChange={handleChange}/>
+        <input id={index} type="number" placeholder={props.coin.qty} onChange={handleChange}/>
       </form>
     </div>
   )
