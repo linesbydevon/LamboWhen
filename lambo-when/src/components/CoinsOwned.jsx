@@ -1,4 +1,5 @@
 import CoinCard from "./CoinCard";
+import ProgressButton from "./ProgressButton";
 import { Link } from "react-router-dom";
 
 export default function CoinsOwned(props){
@@ -38,14 +39,20 @@ const handleLinkClick=(e)=>{
                   <CoinCard 
                   coin={coin}
                   index={index}
+                  key={index}
                   handleClick={handleClick}/>
               )
             }
           </div>
         </div>
         <div className="btnWrapper">
-      <Link className={props.coins.some(coin=>coin.selected === true) ? "clickable btn":"notClickable btn"} to="/setquantity" onClick={handleLinkClick}><div id="addCoins">Add coins</div><div id="allSet">All set?</div></Link>
-      </div>
+          <ProgressButton 
+            className={props.coins.some(coin=>coin.selected === true) ? "clickable btn":"notClickable btn"} 
+            handleLinkClick={handleLinkClick}
+            href='/setquantity'
+            disabledMessage="Add coins"
+            engagedMessage="All set?" />
+        </div>
       </section>
       :
     <p>No coins</p>
