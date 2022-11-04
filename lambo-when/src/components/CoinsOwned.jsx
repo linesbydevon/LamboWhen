@@ -24,20 +24,28 @@ const handleLinkClick=(e)=>{
 
   return(
     <main className="selectCoins">
-      <h2>Please select all coins you own from this list:</h2>
+      
       
     {
       props.coins.length ?  
       <section>
-        <div className="cardContainer">
-      {
-      coins.map(
-        (coin,index)=>
-        <CoinCard coin={coin} index={index} handleClick={handleClick}/>
-      )
-      }
+        <div className="sectionWrapper">
+          <h2>Please select all coins you own from this list:</h2>
+          <div className="cardContainer">
+            {
+            coins.map(
+              (coin,index)=>
+                  <CoinCard 
+                  coin={coin}
+                  index={index}
+                  handleClick={handleClick}/>
+              )
+            }
+          </div>
+        </div>
+        <div className="btnWrapper">
+      <Link className={props.coins.some(coin=>coin.selected === true) ? "clickable btn":"notClickable btn"} to="/setquantity" onClick={handleLinkClick}><div id="addCoins">Add coins</div><div id="allSet">All set?</div></Link>
       </div>
-      <Link className={props.coins.some(coin=>coin.selected === true) ? "clickable":"notClickable"} to="/setquantity" onClick={handleLinkClick}>Move on</Link>
       </section>
       :
     <p>No coins</p>
