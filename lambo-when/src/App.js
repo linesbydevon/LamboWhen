@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import APIErrorGaurd from './components/APIErrorGaurd.jsx';
 import CoinsOwned from './components/CoinsOwned.jsx';
+import CoinsQTY from './components/CoinsQTY.jsx';
 import './App.css';
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home goal={goal} setGoal={setGoal}/>}/>
         <Route exact path="/selectcoins" element={<CoinsOwned coins={coins} setCoins={setCoins}/>}/>
+        <Route exact path="/setquantity" element={<CoinsQTY coins={coins} setCoins={setCoins}/>}/>
       </Routes>
       </>
       }
