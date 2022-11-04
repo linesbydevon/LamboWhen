@@ -1,6 +1,6 @@
 import CoinCard from "./CoinCard";
 import ProgressButton from "./ProgressButton";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function CoinsOwned(props){
   let coins=props.coins;
@@ -24,10 +24,10 @@ const handleLinkClick=(e)=>{
       
       
     {
-      props.coins.length ?  
+      (props.portfolio.goal>0) ?  
       <section>
         <div className="sectionWrapper">
-          <h2>Please select all coins you own from this list:</h2>
+          <h2>Please select <span className="accent">all the assets</span> you own from the list below</h2>
           <div className="cardContainer">
             {
             coins.map(
@@ -51,7 +51,7 @@ const handleLinkClick=(e)=>{
         </div>
       </section>
       :
-    <p>No coins</p>
+      <Navigate to="/"/>
     }
     </main>
   )

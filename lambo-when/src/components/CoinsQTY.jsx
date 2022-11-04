@@ -1,6 +1,6 @@
 import CoinCardForm from "./CoinCardForm";
 import ProgressButton from "./ProgressButton";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function CoinsQTY(props){
   let coins=props.coins;
@@ -8,8 +8,7 @@ export default function CoinsQTY(props){
 const handleChange = (e)=>{
   let index= e.currentTarget.id;
   let localState = [...coins];
-  localState[index].qty=parseInt(e.target.value);
-  console.log(localState)
+  localState[index].qty=e.target.value;
   props.setCoins(localState);
 } 
 
@@ -31,6 +30,7 @@ const handleLinkClick=(e)=>{
           }
         }
       );
+    console.log(localState);
     console.log(localPortfolio);
     props.setPortfolio(localPortfolio);
   }else{
@@ -44,10 +44,10 @@ const handleLinkClick=(e)=>{
       
       
     {
-      props.coins.length ?  
+      props.coins.some(coin=>coin.selected === true) ?  
       <section>
         <div className="sectionWrapper">
-          <h2>Please input the quantity of each asset you own:</h2>
+          <h2>Please <span className="accent">input the quantity</span> of each asset you own:</h2>
           <div className="cardContainer">
             {
             coins.map(
@@ -71,7 +71,7 @@ const handleLinkClick=(e)=>{
         </div>
       </section>
       :
-    <p>No coins</p>
+      <Navigate to="/selectcoins"/>
     }
     </main>
   )

@@ -21,7 +21,7 @@ export default function Home(props){
     <main>
       <div className="sectionWrapper">
       <form>
-        <label htmlFor="goal"><h2>Enter the target US dollar value amount for your portfolio goal.</h2></label>
+        <label htmlFor="goal"><h2>Enter your target portfolio value <span className="accent">in US dollars</span>.</h2></label>
         <input type="number" name="goal" id="goal" onChange={handleChange} placeholder={props.portfolio.goal}></input>
       </form>
       </div>

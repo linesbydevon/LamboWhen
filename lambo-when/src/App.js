@@ -7,11 +7,13 @@ import Home from './components/Home';
 import APIErrorGaurd from './components/APIErrorGaurd.jsx';
 import CoinsOwned from './components/CoinsOwned.jsx';
 import CoinsQTY from './components/CoinsQTY.jsx';
+import Results from './components/Results';
 import './App.css';
 
 function App() {
   //USING STATE
   const [goal, setGoal] = useState(0)
+  const [portfolio, setPortfolio] = useState({goal: 0, value: 0, sparkline: new Array(25).fill(0,0,25)})
   const [allCoinsList, setAllCoinsList] = useState([]);
   const [coins,setCoins] = useState([]);
   const [APIError, setAPIError] = useState(false);
@@ -43,7 +45,8 @@ function App() {
           return {...coin,
                   selected: false,
                   qty: 0,
-                  holdingsValue: 0}
+                  holdingsValue: 0,
+                  holdingsSparkline: []}
           }
         ));
       }
@@ -57,8 +60,9 @@ function App() {
 
     },[]
   )
-  console.log(allCoinsList)
-  console.log(coins)
+  // console.log(allCoinsList)
+  // console.log(coins)
+  // console.log(portfolio)
   return (
     <div className="App">
       <Header/>
@@ -68,9 +72,10 @@ function App() {
         <APIErrorGaurd APIError={APIError}></APIErrorGaurd>:
         <>
       <Routes>
-        <Route exact path="/" element={<Home goal={goal} setGoal={setGoal}/>}/>
-        <Route exact path="/selectcoins" element={<CoinsOwned coins={coins} setCoins={setCoins}/>}/>
-        <Route exact path="/setquantity" element={<CoinsQTY coins={coins} setCoins={setCoins}/>}/>
+        <Route exact path="/" element={<Home portfolio={portfolio} setPortfolio={setPortfolio}/>}/>
+        <Route exact path="/selectcoins" element={<CoinsOwned portfolio={portfolio} coins={coins} setCoins={setCoins}/>}/>
+        <Route exact path="/setquantity" element={<CoinsQTY coins={coins} setCoins={setCoins} portfolio={portfolio} setPortfolio={setPortfolio}/>}/>
+        <Route exact path="/results" element={<Results portfolio={portfolio} coins={coins}/>}/>
       </Routes>
       </>
       }
