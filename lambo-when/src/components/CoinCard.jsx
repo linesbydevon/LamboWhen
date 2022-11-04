@@ -3,7 +3,7 @@ export default function CoinCard(props){
   let index=props.index;
   let handleClick=props.handleClick;
   return(
-    <div className={`card ${coin.symbol}card`} key={coin.symbol} id={index} onClick={handleClick}>
+    <div className={coin.selected ? `card ${coin.symbol}card selected`: `card ${coin.symbol}card`} key={coin.symbol} id={index} onClick={handleClick}>
       <div className="coinInfo">
         <div className="iconContainer">
           <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/>
