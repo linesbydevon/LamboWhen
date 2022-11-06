@@ -8,9 +8,11 @@ export default function Results(props){
   return(
     <main>
       <section className="results">
-        <h2>Your portfolio</h2>
         <div className="sectionWrapper">
         <div className={portfolio.sparkline[24]>portfolio.sparkline[0]? "portfolioResults isUp":"portfolioResults isDown"}>
+        <div className="header">
+          <h2>Your portfolio</h2>
+        </div>
           <p className="change">24HR: <span className="indicator"></span>{(100-getPercentage(portfolio.sparkline[0],portfolio.sparkline[24])).toFixed(2)}%</p>
 
           <h3 className="value">${portfolio.value.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br/><span>{coins.filter(elem=>elem.selected).length} assets</span></h3>
@@ -18,8 +20,8 @@ export default function Results(props){
 
           <div className="sparkBox">
             <div className="highLow">
-              <p className="high"><strong>High:</strong> {Math.max(...portfolio.sparkline).toFixed(2)}</p>
-              <p className="low"><strong>Low:</strong> {Math.min(...portfolio.sparkline).toFixed(2)}</p>
+              <p className="high"><strong>High:</strong><br/>${Math.max(...portfolio.sparkline).toFixed(2)}</p>
+              <p className="low"><strong>Low:</strong><br/>${Math.min(...portfolio.sparkline).toFixed(2)}</p>
             </div>
             <Sparklines className={portfolio.sparkline[24]>portfolio.sparkline[0]? "isUp":"isDown"} data={portfolio.sparkline}>
               <SparklinesLine color={portfolio.sparkline[24]>portfolio.sparkline[0]? "green":"red"} />
