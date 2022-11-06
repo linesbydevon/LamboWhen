@@ -8,19 +8,74 @@ export default function Results(props){
   return(
     <main>
       <section className="results">
-      <h2>Results</h2>
+      
       <div className="sectionWrapper">
-        <h3>Portfolio at a glance</h3>
-        <p>Your current portfolio value of ${portfolio.value.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} is {getPercentage(portfolio.value,goal).toFixed(2)}% of your ${goal.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} goal.</p>
-        <div className={portfolio.sparkline[24]>portfolio.sparkline[0]? "isUp":"isDown"}>
+        <h2>Your current portfolio value of ${portfolio.value.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} is {getPercentage(portfolio.value,goal).toFixed(2)}% of your ${goal.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} goal.</h2>
+
+        <div className={portfolio.sparkline[24]>portfolio.sparkline[0]? "sparkBox isUp":"sparkBox isDown"}>
           <h4>Past 24 hours: up {(100-getPercentage(portfolio.sparkline[0],portfolio.sparkline[24])).toFixed(2)}%</h4>
+          <div className="highLow">
           <p className="high"><strong>High:</strong> {Math.max(...portfolio.sparkline).toFixed(2)}</p>
           <p className="low"><strong>Low:</strong> {Math.min(...portfolio.sparkline).toFixed(2)}</p>
+          </div>
         <Sparklines className={portfolio.sparkline[24]>portfolio.sparkline[0]? "isUp":"isDown"} data={portfolio.sparkline}>
           <SparklinesLine color={portfolio.sparkline[24]>portfolio.sparkline[0]? "green":"red"} />
         </Sparklines>
+        
+        
         </div>
+        <h2>Asset Performance</h2>
+        <section className="assetResults">
+          {
+            coins.map(
+              (coin,index)=> coin.selected ?
+              <div className={parseFloat(coin.price)>coin.sparkline[0]? "resultsCard isUp": parseFloat(coin.price)===coin.sparkline[0] ? "resultsCard isSame" : "resultsCard isDown"} key={coin.symbol}>
+               
+              <div className="coinInfo">
+                <div className="iconContainer">
+                  <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/> 
+                </div>
+                <h3>{coin.name} | <span>{coin.symbol}</span></h3>
+              </div>
+             
+              
 
+
+              
+              <div className="assetDetails">
+                <p className="value">${parseFloat(coin.price).toFixed(2)}</p>
+                <p className="perAsset">per coin</p>
+                <h4>24hr: <span className="indicator"></span>{(100-getPercentage(coin.sparkline[0],coin.sparkline[24])).toFixed(2)}%</h4>
+                <div className="highLow">
+                  <p className="high"><strong>High:</strong><br/>${Math.max(...coin.sparkline).toFixed(2)}</p>
+                  <p className="low"><strong>Low:</strong><br/>${Math.min(...coin.sparkline).toFixed(2)}</p>
+                </div>
+        <Sparklines className={coin.sparkline[24]>coin.sparkline[0]? "isUp":"isDown"} data={coin.sparkline}>
+          <SparklinesLine color={coin.sparkline[24]>coin.sparkline[0]? "green":"red"} />
+        </Sparklines>
+        <div className={`portfolioSpecificInfo`}>
+          <div className="qtyValue">
+            <p className="value">${coin.holdingsValue.toFixed(2)}</p>
+            <p className="perAsset">{coin.qty} {coin.symbol}</p>
+            <div className="percentage">
+              <div className="pieChart" style={{background: `conic-gradient(rgba(8, 10, 12,1) ${getPercentage(coin.holdingsValue, portfolio.value).toFixed(0)}%, rgba(8, 10, 12,.5) ${getPercentage(coin.holdingsValue, portfolio.value).toFixed(0)}%)`}}>
+                <div className="innerChart">
+                </div>
+              </div>
+              <p><strong>{getPercentage(coin.holdingsValue, portfolio.value).toFixed(0)}%</strong> of your portfolio value</p>
+            </div>
+        </div>
+        
+        
+        
+        </div>
+               
+              </div>
+              
+            </div> : false
+              )
+            }
+            </section>
       </div>
       </section>
     </main>
