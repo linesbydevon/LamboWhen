@@ -3,7 +3,7 @@ export default function CoinCardForm(props){
   let index=props.index;
   let handleChange=props.handleChange;
   return(
-    <div className={`cardForm ${coin.symbol}card`} key={coin.symbol}>
+    <div className={`card ${coin.symbol}card qtyCard`} key={coin.symbol}>
       <div className="coinInfo">
         <div className="iconContainer">
           <img src={coin.iconUrl} alt={`Logo for ${coin.name}`}/>

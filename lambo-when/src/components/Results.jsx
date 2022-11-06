@@ -8,28 +8,38 @@ export default function Results(props){
   return(
     <main>
       <section className="results">
-      
-      <div className="sectionWrapper">
-        <h2>Your current portfolio value of ${portfolio.value.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} is {getPercentage(portfolio.value,goal).toFixed(2)}% of your ${goal.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} goal.</h2>
+        <h2>Your portfolio</h2>
+        <div className="sectionWrapper">
+        <div className={portfolio.sparkline[24]>portfolio.sparkline[0]? "portfolioResults isUp":"portfolioResults isDown"}>
+          <p className="change">24HR: <span className="indicator"></span>{(100-getPercentage(portfolio.sparkline[0],portfolio.sparkline[24])).toFixed(2)}%</p>
 
-        <div className={portfolio.sparkline[24]>portfolio.sparkline[0]? "sparkBox isUp":"sparkBox isDown"}>
-          <h4>Past 24 hours: up {(100-getPercentage(portfolio.sparkline[0],portfolio.sparkline[24])).toFixed(2)}%</h4>
-          <div className="highLow">
-          <p className="high"><strong>High:</strong> {Math.max(...portfolio.sparkline).toFixed(2)}</p>
-          <p className="low"><strong>Low:</strong> {Math.min(...portfolio.sparkline).toFixed(2)}</p>
+          <h3 className="value">${portfolio.value.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}<br/><span>{coins.filter(elem=>elem.selected).length} assets</span></h3>
+
+
+          <div className="sparkBox">
+            <div className="highLow">
+              <p className="high"><strong>High:</strong> {Math.max(...portfolio.sparkline).toFixed(2)}</p>
+              <p className="low"><strong>Low:</strong> {Math.min(...portfolio.sparkline).toFixed(2)}</p>
+            </div>
+            <Sparklines className={portfolio.sparkline[24]>portfolio.sparkline[0]? "isUp":"isDown"} data={portfolio.sparkline}>
+              <SparklinesLine color={portfolio.sparkline[24]>portfolio.sparkline[0]? "green":"red"} />
+            </Sparklines>
           </div>
-        <Sparklines className={portfolio.sparkline[24]>portfolio.sparkline[0]? "isUp":"isDown"} data={portfolio.sparkline}>
-          <SparklinesLine color={portfolio.sparkline[24]>portfolio.sparkline[0]? "green":"red"} />
-        </Sparklines>
-        
-        
+          <div className="portfolioSpecificInfo">
+          <div className="percentage">
+            <div className="pieChart" style={{background: `conic-gradient(rgba(8, 10, 12,1) ${getPercentage(portfolio.value, portfolio.goal).toFixed(0)}%, rgba(8, 10, 12,.5) ${getPercentage(portfolio.value, portfolio.goal).toFixed(0)}%)`}}>
+              <div className="innerChart"></div>
+            </div>
+            <p><strong>{getPercentage(portfolio.value, portfolio.goal).toFixed(2)}%</strong> of your <strong>${goal.toLocaleString(navigator.language, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> goal.</p>
+          </div>
+          </div>
         </div>
-        <h2>Asset Performance</h2>
+        <h2 className="assetHeadline">Asset Performance</h2>
         <section className="assetResults">
           {
             coins.map(
               (coin,index)=> coin.selected ?
-              <div className={parseFloat(coin.price)>coin.sparkline[0]? "resultsCard isUp": parseFloat(coin.price)===coin.sparkline[0] ? "resultsCard isSame" : "resultsCard isDown"} key={coin.symbol}>
+              <div className={parseFloat(coin.price)>coin.sparkline[0]? "card resultsCard isUp": parseFloat(coin.price)===coin.sparkline[0] ? "card resultsCard isSame" : "card resultsCard isDown"} key={coin.symbol}>
                
               <div className="coinInfo">
                 <div className="iconContainer">

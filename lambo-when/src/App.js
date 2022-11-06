@@ -8,7 +8,8 @@ import APIErrorGaurd from './components/APIErrorGaurd.jsx';
 import CoinsOwned from './components/CoinsOwned.jsx';
 import CoinsQTY from './components/CoinsQTY.jsx';
 import Results from './components/Results';
-import './App.css';
+// import './App.css';
+import './style.css';
 
 function App() {
   //USING STATE

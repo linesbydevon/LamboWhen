@@ -25,17 +25,22 @@ html{
   background: rgba(var(--black),1)
 }
 
+/* ============== */
+/* General Layout */
+/* ============== */
+
 body{
   padding: 0 8px 32px;
   color: rgba(var(--white),1);
   font-family: 'Satoshi', Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 header{
   display: flex;
   justify-content: space-between;
-  padding: 16px;
-  margin-bottom: 32px;
+  padding: 1em;
+  margin-bottom: 2em;
   align-items: center;
 }
 
@@ -51,18 +56,14 @@ header ul a{
   text-decoration: none;
 }
 
-main{
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
 .sectionWrapper{
   max-width: 640px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 0;
   border-radius: 16px;
   box-shadow: -6px -4px 10px 1px rgba(255,255,255,0.04),8px 8px 10px 1px rgba(0,0,0,0.32);
+  border: 1px solid rgba(var(--tint1),1);
+  box-shadow: 0px 0px 16px 16px rgba(0,0,0,0.32);
 }
 
 .accent{
@@ -134,10 +135,8 @@ main{
 
 h2{
   padding-bottom: 32px;
-  text-align: center;
-  
+  text-align: center; 
 }
-
 
 #goal{
   display: block;
@@ -156,6 +155,9 @@ h2{
   position: relative;
 }
 
+/* ============== */
+/* Card Layouts (general)  */
+/* ============== */
 
 @keyframes cardAppear{
   from{
@@ -175,116 +177,31 @@ h2{
   }
 }
 
-.card, .cardForm{
+.card{
+  font-size: 1em;
   width: 100%;
-  max-width: 0;
+  max-width: 296px;
   padding: 0;
   margin: 0 auto 4px;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
-  border: 1px solid rgba(var(--tint5),1);
-  animation: cardAppear 1s ease forwards;
-  transition: all .4s ease;
-  
-}
-
-
-
-.card{
-  opacity: .5;
-}
-
-.card:hover{
-  position: relative;
-  bottom: 1px;
-  opacity: 1;
-}
-
-.card[class~="selected"]{
-  opacity: 1;
-}
-
-.card .check{
-  position: absolute;
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  background: rgba(var(--green),1);
-  border-radius: 50%;
-  top:33px;
+  border: 1px solid rgba(var(--tint1),1);
   transition: all .4s ease;
 }
 
-.card .check:before{
-  position: absolute;
-  display: block;
-  content: '';
-  width:16px;
-  height: 2px;
-  background: rgba(var(--black));
-  transform: rotate(-45deg);
-  top: 16px;
-  left: 10px;
-}
-
-.card .check:after{
-  position: absolute;
-  display: block;
-  content: '';
-  width:8px;
-  height: 2px;
-  background: rgba(var(--black));
-  transform: rotate(45deg);
-  top: 18px;
-  left: 6px;
-}
-
-
-.card[class~="selected"] .check{
-  top: 0;
-}
-
-.card .coinInfo, .cardForm .coinInfo, .resultsCard .coinInfo{
+.card .coinInfo{
+  padding: 8px;
   display: flex;
   gap: 16px;
   align-items: center;
 }
 
-.cardForm .coinInfo{
-  border-bottom: 1px solid rgba(var(--tint4),1);
-  padding-bottom: 8px;
+.coinInfo h3{
+  font-size: 1.25em;
 }
 
-.cardForm form{
-  padding: 16px 0 8px;
-}
-
-.cardForm form input{
-  width: 100%;
-  margin-top: 8px;
-  background: rgba(var(--tint1),1);
-  border: none;
-  color: rgba(var(--white),1);
-  padding: 4px;
-}
-
-.cardForm form input::placeholder{
-  color: whitesmoke;
-}
-
-.cardForm form input:focus{
-  border: none;
-  outline: none;
-}
-
-.card form input{
-  display: block;
-}
-
-.card h2, .card h3, .card p{
-  font-size: 16px;
+.card h3, .card p, .card form, .card .iconContainer{
   opacity: 0;
   animation: contentAppear .4s ease .6s forwards;
 }
@@ -292,12 +209,6 @@ h2{
 .card h3 span{
   font-weight: normal
 }
-
-
-circle{
-  fill-opacity: 0 !important;
-}
-
 
 .iconContainer{
   background: rgba(var(--white),1);
@@ -320,12 +231,210 @@ circle{
   border-radius: 50%;
 }
 
+/* Select Coins specific card rules*/
+
+.option{
+  opacity: .5;
+  cursor: pointer;
+}
+
+.option:hover{
+  position: relative;
+  bottom: 1px;
+  opacity: 1;
+}
+
+.option[class~="selected"]{
+  opacity: 1;
+}
+
+.option .check{
+  position: absolute;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(var(--green),1);
+  border-radius: 50%;
+  top:33px;
+  transition: all .4s ease;
+}
+
+.option .check:before{
+  position: absolute;
+  display: block;
+  content: '';
+  width:16px;
+  height: 2px;
+  background: rgba(var(--black));
+  transform: rotate(-45deg);
+  top: 16px;
+  left: 10px;
+}
+
+.option .check:after{
+  position: absolute;
+  display: block;
+  content: '';
+  width:8px;
+  height: 2px;
+  background: rgba(var(--black));
+  transform: rotate(45deg);
+  top: 18px;
+  left: 6px;
+}
+
+.option[class~="selected"] .check{
+  top: 0;
+}
+
+/* Set quantity specific card rules*/
+
+.qtyCard .coinInfo{
+  box-shadow: 0 0 16px 16px rgba(var(--tint1),.24);
+}
+
+.card form{
+  padding: 16px 8px 8px;
+}
+
+.card form input{
+  width: 100%;
+  margin-top: 8px;
+  background: rgba(var(--tint1),1);
+  border: none;
+  color: rgba(var(--white),1);
+  padding: 4px;
+}
+
+.card form input::placeholder{
+  color: whitesmoke;
+}
+
+.card form input:focus{
+  border: none;
+  outline: none;
+}
+
+.card form input{
+  display: block;
+}
+
+/* Results specific card rules*/
+
+
+
+.resultsCard{
+  border: 1px solid rgba(var(--orange),1);
+  background: rgba(var(--black),1);
+  box-shadow: 0 0 12px 8px rgba(0,0,0,0.1);
+}
+
+.resultsCard .coinInfo{
+  box-shadow: 0 0 16px 16px rgba(var(--tint1),.24);
+  margin-bottom: 8px;
+}
+
+.resultsCard .portfolioSpecificInfo{
+  color: rgba(var(--black),1);
+  padding: 24px 8px;
+}
+
+.value{
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  line-height: .88;
+  margin-bottom: 1.125em;
+}
+.value span{
+  font-size: .75em;
+  font-weight: normal;
+}
+
+/*SVG and chart specific*/
+
+svg{
+  position: relative;
+  width: 110%;
+  bottom: -10px;
+  left: -5%;
+}
+
+polyline{
+  stroke-width: 0 !important;
+}
+.isUp polyLine:first-of-type{
+  fill: rgba(var(--green),1) !important;
+  fill-opacity: 1 !important;
+}
+
+.isDown polyLine:first-of-type{
+  fill: rgba(var(--red),1) !important;
+  fill-opacity: 1 !important;
+}
+
+circle{
+  fill-opacity: 0 !important;
+}
+
+.pieChart{
+  width: 100%;
+  max-width: 160px;
+  aspect-ratio: 1;
+  background: rgba(var(--purple),1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.percentage{
+  color: rgba(var(--black),1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  right: 4px;
+}
+
+.percentage .pieChart{
+  
+  max-width: 24px;
+  aspect-ratio: 1;
+  background: rgba(var(--purple),1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: conic-gradient(rgba(var(--black),1) 61%,
+                             rgba(var(--black),.5) 61%
+                            );
+}
+
+.percentage .innerChart{
+  width: 56%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+/**/
 
 .results .sectionWrapper{
   padding: 0;
 }
 .portfolioResults{
   position: relative;
+  padding-top: 16px;
+}
+
+.portfolioResults .percentage{
+  padding: 40px 0 24px;
 }
 
 .portfolioResults .sparkBox{
@@ -340,7 +449,6 @@ circle{
 }
 
 .isDown .portfolioSpecificInfo{
-  padding: 24px 8px;
   background: rgba(var(--red),1);
 }
 
@@ -363,41 +471,30 @@ circle{
 .assetResults{
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
+  padding: 16px;
 }
 
-.resultsCard{
-  border: 1px solid rgba(var(--orange),1);
-  width: 100%;
-  max-width: 296px;
-  border-radius: 16px;
-  overflow: hidden;
+.portfolioResults .portfolioSpecificInfo{
   position: relative;
-  box-shadow: inset 0 0 64px 32px rgba(0,0,0,.2);
-  margin: 0 auto;
 }
 
-.resultsCard .coinInfo{
-  padding: 8px;
-  box-shadow: 0 0 16px 16px rgba(var(--tint1),.24);
-  margin-bottom: 8px;
+.portfolioResults .portfolioSpecificInfo:after{
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 440px;
+  z-index:0;
+  left: 0;
 }
 
-.resultsCard .portfolioSpecificInfo{
-  color: rgba(var(--black),1);
-  padding: 24px 8px;
+.isDown .portfolioSpecificInfo:after{
+  background: linear-gradient(rgba(var(--red),1),rgba(var(--purple)),rgba(var(--black)));
 }
 
-.resultsCard .value{
-  font-weight: bold;
-  font-size: 32px;
-  text-align: center;
-  line-height: .88;
-  margin-bottom: 24px;
-}
-.resultsCard .value span{
-  font-size: .75em;
-  font-weight: normal;
+.isUp .portfolioSpecificInfo:after{
+  background: linear-gradient(rgba(var(--green),1),rgba(var(--purple)),rgba(var(--black)));
 }
 
 .change{
@@ -451,73 +548,17 @@ circle{
   bottom: 4px;
 }
 
-.resultsCard h4{
-  text-align: center;
-}
-
-.resultsCard svg{
-  position: relative;
-  width: 110%;
-  bottom: -10px;
-  left: -5%;
-
-}
-
-.resultsCard polyline{
-  stroke-width: 0 !important;
-}
-.isUp polyLine:first-of-type{
-  fill: rgba(var(--green),1) !important;
-  fill-opacity: 1 !important;
-}
-
-.isDown polyLine:first-of-type{
-  fill: rgba(var(--red),1) !important;
-  fill-opacity: 1 !important;
-}
-
-.pieChart{
-  width: 100%;
-  max-width: 160px;
-  aspect-ratio: 1;
-  background: rgba(var(--purple),1);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.percentage{
+.assetHeadline{
   color: rgba(var(--black),1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
   position: relative;
-  right: 2%;
+  z-index: 99;
 }
 
-.percentage .pieChart{
-  
-  max-width: 24px;
-  aspect-ratio: 1;
-  background: rgba(var(--purple),1);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  background: conic-gradient(rgba(var(--black),1) 61%,
-                             rgba(var(--black),.5) 61%
-                            );
-}
-
-.percentage .innerChart{
-  width: 56%;
-  aspect-ratio: 1;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  border-radius: 50%;
+.assetHeadline:before{
+  display: block;
+  content: '';
+  max-width: 160px;
+  height: 4px;
+  background: rgba(var(--black),.4);
+  margin: 32px auto 24px;
 }
