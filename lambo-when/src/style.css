@@ -48,15 +48,16 @@ header{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem .5rem;
+  padding: .5rem;
   margin-bottom: 2rem;
   align-items: center;
   margin: 0 auto;
-  border-bottom: 1px solid rgba(var(--purple),1);
+  border-bottom: 1px solid rgba(var(--tint1),1);
   box-shadow: 0 0 24px 24px rgba(0,0,0,.6);
 }
 
 header h1{
+  font-size: 1.5rem;
   text-align: center;
   color: rgba(var(--purple),1);
 }
@@ -641,6 +642,17 @@ circle{
   height: 4px;
   background: rgba(var(--black),.4);
   margin: 2rem auto 1.5rem;
+}
+
+footer{
+  padding-top: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+footer h2{
+  color: rgba(var(--tint5));
+  padding-bottom: 0px;
 }
 
 @media screen and (max-width: 400px){
