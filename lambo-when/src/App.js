@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "./global.js";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/elements/Header";
-import Home from "./components/pages/Home";
+import GoalSetPage from "./components/pages/GoalSetPage";
 import APIErrorGaurd from "./components/elements/APIErrorGaurd.jsx";
-import CoinsOwned from "./components/pages/CoinsOwned.jsx";
-import CoinsQTY from "./components/pages/CoinsQTY.jsx";
+import CoinsSelectPage from "./components/pages/CoinsSelectPage.jsx";
+import CoinsQTYPage from "./components/pages/CoinsQTYPage.jsx";
 import Results from "./components/pages/Results";
-// import './App.css';
 import "./style.css";
 
 function App() {
@@ -64,9 +63,45 @@ function App() {
 
     getResponse();
   }, []);
-  // console.log(allCoinsList)
-  // console.log(coins)
-  // console.log(portfolio)
+
+  const handleLinkClick = (e) => {
+    let targetPath = e.target.parentElement.attributes[1].nodeValue;
+    console.log(targetPath);
+    if (targetPath==="/selectcoins"){
+      if (!(portfolio.goal) > 0) {
+        console.log("Goal is too small");
+        e.preventDefault();
+      }
+    } else if (targetPath==="/setquantity"){
+      if (!(coins.some((coin) => coin.selected === true))) {
+        e.preventDefault();
+      } 
+    } else if (targetPath==="/results"){
+      if(coins.filter(coin=>coin.selected===true).every(coin=>coin.qty>0)){
+        //declaring and updating holdingsValue and holdingsSparkline of local copy of props.coins
+        let localState = [...coins];
+        localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsValue=parseFloat(coin.price)*coin.qty);
+        localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsSparkline=coin.sparkline.map(elem=>elem*coin.qty));
+        setCoins(localState);
+        //
+        let localPortfolio= {...portfolio};
+        localPortfolio.value=0;
+        localPortfolio.sparkline.fill(0,0,25);
+        localState.filter(coin=>coin.selected===true).forEach(coin=>localPortfolio.value+=coin.holdingsValue);
+        localState.filter(coin=>coin.selected===true).forEach(coin=>{
+              for(let i=0; i < coin.sparkline.length; i++){
+                localPortfolio.sparkline[i]+=coin.holdingsSparkline[i];
+              }
+            }
+          );
+        setPortfolio(localPortfolio);
+      }else{
+        console.log("QTY not set")
+        e.preventDefault();
+      }
+    }
+  };
+
   return (
     <div className="App">
       <Header />
@@ -79,17 +114,18 @@ function App() {
               exact
               path="/"
               element={
-                <Home portfolio={portfolio} setPortfolio={setPortfolio} />
+                <GoalSetPage portfolio={portfolio} setPortfolio={setPortfolio} handleLinkClick={handleLinkClick}/>
               }
             />
             <Route
               exact
               path="/selectcoins"
               element={
-                <CoinsOwned
+                <CoinsSelectPage
                   portfolio={portfolio}
                   coins={coins}
                   setCoins={setCoins}
+                  handleLinkClick={handleLinkClick}
                 />
               }
             />
@@ -97,11 +133,12 @@ function App() {
               exact
               path="/setquantity"
               element={
-                <CoinsQTY
+                <CoinsQTYPage
                   coins={coins}
                   setCoins={setCoins}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
+                  handleLinkClick={handleLinkClick}
                 />
               }
             />

@@ -2,26 +2,25 @@ import CoinCard from "../cards/CoinCard";
 import ProgressButton from "../elements/ProgressButton";
 import { Link, Navigate } from "react-router-dom";
 
-export default function CoinsOwned(props) {
-  let coins = props.coins;
+export default function CoinsSelectPage({coins, setCoins,portfolio,handleLinkClick}) {
   const handleClick = (e) => {
     let index = e.currentTarget.id;
     let localState = [...coins];
     localState[index].selected = !localState[index].selected;
-    props.setCoins(localState);
+    setCoins(localState);
     e.currentTarget.classList.toggle("selected");
   };
 
-  const handleLinkClick = (e) => {
-    if (props.coins.some((coin) => coin.selected === true)) {
-    } else {
-      e.preventDefault();
-    }
-  };
+  // const handleLinkClick = (e) => {
+  //   if (coins.some((coin) => coin.selected === true)) {
+  //   } else {
+  //     e.preventDefault();
+  //   }
+  // };
 
   return (
     <main className="selectCoins">
-      {props.portfolio.goal > 0 ? (
+      {portfolio.goal > 0 ? (
         <section>
           <div className="sectionWrapper">
             <div className="padder">
@@ -44,7 +43,7 @@ export default function CoinsOwned(props) {
           <div className="btnWrapper">
             <ProgressButton
               className={
-                props.coins.some((coin) => coin.selected === true)
+                coins.some((coin) => coin.selected === true)
                   ? "clickable btn"
                   : "notClickable btn"
               }
