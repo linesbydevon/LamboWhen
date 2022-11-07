@@ -1,15 +1,17 @@
 import { Sparklines, SparklinesLine } from 'react-sparklines';
+import { getPercentage, getPercentageChange, isUp, formatNum } from "../../utilities";
 
-export default function CoinCardResults({coin, portfolio, getPercentage}) {
+export default function CoinCardResults({coin, portfolio}) {
   return (
     <div
-      className={
-        parseFloat(coin.price) > coin.sparkline[0]
-          ? "card resultsCard isUp"
-          : parseFloat(coin.price) === coin.sparkline[0]
-          ? "card resultsCard isSame"
-          : "card resultsCard isDown"
-      }
+      // className={
+      //   parseFloat(coin.price) > coin.sparkline[0]
+      //     ? "card resultsCard isUp"
+      //     : parseFloat(coin.price) === coin.sparkline[0]
+      //     ? "card resultsCard isSame"
+      //     : "card resultsCard isDown"
+      // }
+      className={`card resultsCard ${isUp(coin.price,coin.sparkline[0])}`}
       key={coin.symbol}
     >
       <div className="coinInfo">
@@ -27,24 +29,23 @@ export default function CoinCardResults({coin, portfolio, getPercentage}) {
       <div className="assetDetails">
         <p className="change">
           24HR: <span className="indicator"></span>
-          {(100 - getPercentage(coin.sparkline[0], coin.sparkline[24])).toFixed(
-            2
-          )}
+          {getPercentageChange(coin.sparkline[0],coin.sparkline[24]).toFixed(2)}
           %
         </p>
         <h4 className="value">
-          ${parseFloat(coin.price).toFixed(2)}
+          {/* ${parseFloat(coin.price).toFixed(2)} */}
+          ${formatNum(parseFloat(coin.price))}
           <br />
           <span>per coin</span>
         </h4>
         <div className="highLow">
           <p className="low">
             <strong>Low:</strong>
-            <br />${Math.min(...coin.sparkline).toFixed(2)}
+            <br />${formatNum(Math.min(...coin.sparkline))}
           </p>
           <p className="high">
             <strong>High:</strong>
-            <br />${Math.max(...coin.sparkline).toFixed(2)}
+            <br />${formatNum(Math.max(...coin.sparkline))}
           </p>
         </div>
         <Sparklines
@@ -58,7 +59,7 @@ export default function CoinCardResults({coin, portfolio, getPercentage}) {
         <div className={`portfolioSpecificInfo`}>
           <div className="qtyValue">
             <h4 className="value">
-              ${coin.holdingsValue.toFixed(2)}
+              ${formatNum(coin.holdingsValue)}
               <br />
               <span>
                 {coin.qty} {coin.symbol}
@@ -72,10 +73,10 @@ export default function CoinCardResults({coin, portfolio, getPercentage}) {
                   background: `conic-gradient(rgba(8, 10, 12,1) ${getPercentage(
                     coin.holdingsValue,
                     portfolio.value
-                  ).toFixed(0)}%, rgba(8, 10, 12,.5) ${getPercentage(
+                  ).toFixed(1)}%, rgba(8, 10, 12,.5) ${getPercentage(
                     coin.holdingsValue,
                     portfolio.value
-                  ).toFixed(0)}%)`,
+                  ).toFixed(1)}%)`,
                 }}
               >
                 <div className="innerChart"></div>
@@ -83,7 +84,7 @@ export default function CoinCardResults({coin, portfolio, getPercentage}) {
               <p>
                 <strong>
                   {getPercentage(coin.holdingsValue, portfolio.value).toFixed(
-                    0
+                    1
                   )}
                   %
                 </strong>{" "}
