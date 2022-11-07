@@ -2,12 +2,12 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "./global.js";
 import { Route, Routes, Link } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import APIErrorGaurd from "./components/APIErrorGaurd.jsx";
-import CoinsOwned from "./components/CoinsOwned.jsx";
-import CoinsQTY from "./components/CoinsQTY.jsx";
-import Results from "./components/Results";
+import Header from "./components/elements/Header";
+import Home from "./components/pages/Home";
+import APIErrorGaurd from "./components/elements/APIErrorGaurd.jsx";
+import CoinsOwned from "./components/pages/CoinsOwned.jsx";
+import CoinsQTY from "./components/pages/CoinsQTY.jsx";
+import Results from "./components/pages/Results";
 // import './App.css';
 import "./style.css";
 
@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "https://coinranking1.p.rapidapi.com/coins",
+      url: `${BASE_URL}/coins`,
       params: {
         referenceCurrencyUuid: "yhjMzLPhuIDl",
         timePeriod: "24h",

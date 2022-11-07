@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ProgressButton from "./ProgressButton";
+import ProgressButton from "../elements/ProgressButton";
 export default function Home(props){
   
   const handleLinkClick=(e)=>{

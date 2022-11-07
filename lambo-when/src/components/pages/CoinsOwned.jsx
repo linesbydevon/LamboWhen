@@ -1,5 +1,5 @@
-import CoinCard from "./CoinCard";
-import ProgressButton from "./ProgressButton";
+import CoinCard from "../cards/CoinCard";
+import ProgressButton from "../elements/ProgressButton";
 import { Link, Navigate } from "react-router-dom";
 
 export default function CoinsOwned(props) {
