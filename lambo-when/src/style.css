@@ -76,6 +76,10 @@ header ul a{
   margin: 0 auto;
 }
 
+.padder{
+  padding: 24px 8px;
+}
+
 .btn{
   display: inline-block;
   margin-top: 32px;
@@ -83,6 +87,7 @@ header ul a{
   width: 168px;
   height: 40px;
   box-shadow: -5px -3px 10px 1px rgba(255,255,255,0.04),8px 8px 10px 1px rgba(0,0,0,0.32);
+  box-shadow: 0px 0px 16px 16px rgba(0,0,0,0.32);
   text-align: center;
   text-decoration: none;
   font-weight: bold;

@@ -20,10 +20,12 @@ export default function Home(props){
   return(
     <main>
       <div className="sectionWrapper">
+        <div className="padder">
       <form>
         <label htmlFor="goal"><h2>Enter your target portfolio value <span className="accent">in US dollars</span>.</h2></label>
         <input type="number" name="goal" id="goal" onChange={handleChange} placeholder={props.portfolio.goal}></input>
       </form>
+      </div>
       </div>
       <section className="btnWrapper">
       {/* <Link className={(props.goal>0) ? "clickable btn":"notClickable btn"} to="/selectcoins" onClick={handleLinkClick}><div id="addCoins">Set goal</div><div id="allSet">All set?</div></Link> */}

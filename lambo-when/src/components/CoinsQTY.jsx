@@ -47,6 +47,7 @@ const handleLinkClick=(e)=>{
       props.coins.some(coin=>coin.selected === true) ?  
       <section>
         <div className="sectionWrapper">
+          <div className="padder">
           <h2>Please <span className="accent">input the quantity</span> of each asset you own:</h2>
           <div className="cardContainer">
             {
@@ -59,6 +60,7 @@ const handleLinkClick=(e)=>{
                   handleChange={handleChange}/> : false
               )
             }
+          </div>
           </div>
         </div>
         <div className="btnWrapper">
