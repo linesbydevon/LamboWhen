@@ -22,7 +22,8 @@ html{
   --red: 255, 118, 176;
   --orange: 232, 176, 94;
   --yellow: 205,255,105;
-  background: rgba(var(--black),1)
+  background: rgba(var(--black),1);
+  font-size: 16px;
 }
 
 /* ============== */
@@ -30,30 +31,87 @@ html{
 /* ============== */
 
 body{
-  padding: 0 8px 32px;
   color: rgba(var(--white),1);
   font-family: 'Satoshi', Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
+}
+
+.App{
+  padding: 0 0 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 header{
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1em;
-  margin-bottom: 2em;
+  padding: 1rem .5rem;
+  margin-bottom: 2rem;
   align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(var(--purple),1);
+  box-shadow: 0 0 24px 24px rgba(0,0,0,.6);
+}
+
+header h1{
+  text-align: center;
+  color: rgba(var(--purple),1);
 }
 
 header ul{
   list-style: none;
   display: flex;
-  gap: 8px;
+  gap: .5rem;
 }
 
 header ul a{
   font-weight: bold;
   color: rgba(var(--white),1);
   text-decoration: none;
+}
+
+.progressNav{
+  max-width: 640px;
+  margin: 0 auto;
+  padding: .5rem .5rem 1.5rem;
+}
+.progressNav ol{
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  color: rgba(var(--tint5),1);
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.progressNav li a{
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  line-height: .9;
+}
+
+.progressNav .listNum{
+  font-size: 2.3rem
+}
+
+.progressNav .active {
+  color: rgba(var(--white),1);
+}
+
+.progressNav .active .listNum{
+  color: rgba(var(--purple),1);
+}
+
+.mainWrapper{
+  margin-top: 40px;
 }
 
 .sectionWrapper{
@@ -77,12 +135,17 @@ header ul a{
 }
 
 .padder{
-  padding: 24px 8px;
+  padding: 1.5rem .5rem;
+}
+
+.padder h2{
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .btn{
   display: inline-block;
-  margin-top: 32px;
+  margin-top: 2rem;
   border-radius: 16px;
   width: 168px;
   height: 40px;
@@ -139,7 +202,7 @@ header ul a{
 }
 
 h2{
-  padding-bottom: 32px;
+  padding-bottom: 2rem;
   text-align: center; 
 }
 
@@ -167,10 +230,10 @@ h2{
 @keyframes cardAppear{
   from{
     max-width: 0;
-    padding: 0px;
+    padding: 0rem;
   }to{
     max-width: 352px;
-    padding: 8px
+    padding: .5rem;
   }
 }
 
@@ -187,7 +250,7 @@ h2{
   width: 100%;
   max-width: 296px;
   padding: 0;
-  margin: 0 auto 4px;
+  margin: 0 auto .25rem;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -196,9 +259,9 @@ h2{
 }
 
 .card .coinInfo{
-  padding: 8px;
+  padding: .5rem;
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -299,16 +362,16 @@ h2{
 }
 
 .card form{
-  padding: 16px 8px 8px;
+  padding: 1rem .5rem .5rem;
 }
 
 .card form input{
   width: 100%;
-  margin-top: 8px;
+  margin-top: .5rem;
   background: rgba(var(--tint1),1);
   border: none;
   color: rgba(var(--white),1);
-  padding: 4px;
+  padding: .25rem;
 }
 
 .card form input::placeholder{
@@ -336,12 +399,12 @@ h2{
 
 .resultsCard .coinInfo{
   box-shadow: 0 0 16px 16px rgba(var(--tint1),.24);
-  margin-bottom: 8px;
+  margin-bottom: .5rem;
 }
 
 .resultsCard .portfolioSpecificInfo{
   color: rgba(var(--black),1);
-  padding: 24px 8px;
+  padding: 1.5rem .5rem;
 }
 
 .value{
@@ -349,7 +412,7 @@ h2{
   font-size: 2em;
   text-align: center;
   line-height: .88;
-  margin-bottom: 1.125em;
+  margin-bottom: 1.5rem;
 }
 .value span{
   font-size: .75em;
@@ -399,7 +462,7 @@ circle{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: .5rem;
   position: relative;
   right: 4px;
 }
@@ -441,9 +504,9 @@ circle{
 }
 
 .portfolioResults .header{
-  padding: 16px;
+  padding: 1rem;
   box-shadow: 0 24px 18px rgba(var(--tint1),.20);
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .portfolioResults .header h2{
@@ -451,7 +514,7 @@ circle{
 }
 
 .portfolioResults .percentage{
-  padding: 40px 0 24px;
+  padding: 2.5rem 0 1.5rem;
 }
 
 .portfolioResults .sparkBox{
@@ -489,7 +552,7 @@ circle{
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 16px;
+  padding: 1rem;
 }
 
 .portfolioResults .portfolioSpecificInfo{
@@ -516,7 +579,7 @@ circle{
 
 .change{
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
 }
 
 
@@ -551,7 +614,7 @@ circle{
   height: 8px;
   background: linear-gradient(to bottom right, rgba(var(--green),1) 50%, rgba(var(--green),0) 50%);
   transform: rotate(45deg);
-  margin: 0 4px;
+  margin: 0 .25rem;
 }
 
 .isDown .indicator{
@@ -560,7 +623,7 @@ circle{
   height: 8px;
   background: linear-gradient(to bottom right, rgba(var(--red),1) 50%, rgba(var(--red),0) 50%);
   transform: rotate(225deg);
-  margin: 0 4px;
+  margin: 0 .25rem;
   position: relative;
   bottom: 4px;
 }
@@ -577,5 +640,11 @@ circle{
   max-width: 160px;
   height: 4px;
   background: rgba(var(--black),.4);
-  margin: 32px auto 24px;
+  margin: 2rem auto 1.5rem;
+}
+
+@media screen and (max-width: 400px){
+  body{
+    font-size: 14px;
+  }
 }

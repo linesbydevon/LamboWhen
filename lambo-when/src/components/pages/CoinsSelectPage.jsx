@@ -2,7 +2,12 @@ import CoinCard from "../cards/CoinCard";
 import ProgressButton from "../elements/ProgressButton";
 import { Link, Navigate } from "react-router-dom";
 
-export default function CoinsSelectPage({coins, setCoins,portfolio,handleLinkClick}) {
+export default function CoinsSelectPage({
+  coins,
+  setCoins,
+  portfolio,
+  handleLinkClick,
+}) {
   const handleClick = (e) => {
     let index = e.currentTarget.id;
     let localState = [...coins];
@@ -11,34 +16,27 @@ export default function CoinsSelectPage({coins, setCoins,portfolio,handleLinkCli
     e.currentTarget.classList.toggle("selected");
   };
 
-  // const handleLinkClick = (e) => {
-  //   if (coins.some((coin) => coin.selected === true)) {
-  //   } else {
-  //     e.preventDefault();
-  //   }
-  // };
-
   return (
     <main className="selectCoins">
       {portfolio.goal > 0 ? (
         <section>
           <div className="sectionWrapper">
             <div className="padder">
-            <h2>
-              Please select <span className="accent">all the assets</span> you
-              own from the list below
-            </h2>
-            <div className="cardContainer">
-              {coins.map((coin, index) => (
-                <CoinCard
-                  coin={coin}
-                  index={index}
-                  key={index}
-                  handleClick={handleClick}
-                />
-              ))}
+              <h2>
+                Please select <span className="accent">all the assets</span> you
+                own from the list below
+              </h2>
+              <div className="cardContainer">
+                {coins.map((coin, index) => (
+                  <CoinCard
+                    coin={coin}
+                    index={index}
+                    key={index}
+                    handleClick={handleClick}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
           </div>
           <div className="btnWrapper">
             <ProgressButton
@@ -52,8 +50,7 @@ export default function CoinsSelectPage({coins, setCoins,portfolio,handleLinkCli
               disabledMessage="Add coins"
               engagedMessage="All set?"
             />
-            </div>
-          
+          </div>
         </section>
       ) : (
         <Navigate to="/" />

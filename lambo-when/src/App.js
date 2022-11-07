@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { BASE_URL } from "./global.js";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/elements/Header";
+import Main from "./components/elements/Main.jsx";
 import GoalSetPage from "./components/pages/GoalSetPage";
 import APIErrorGaurd from "./components/elements/APIErrorGaurd.jsx";
 import CoinsSelectPage from "./components/pages/CoinsSelectPage.jsx";
 import CoinsQTYPage from "./components/pages/CoinsQTYPage.jsx";
 import Results from "./components/pages/Results";
+import Footer from "./components/elements/Footer.jsx";
 import "./style.css";
 
 function App() {
@@ -67,36 +69,54 @@ function App() {
   const handleLinkClick = (e) => {
     let targetPath = e.target.parentElement.attributes[1].nodeValue;
     console.log(targetPath);
-    if (targetPath==="/selectcoins"){
-      if (!(portfolio.goal) > 0) {
+    if (targetPath === "/selectcoins") {
+      if (!portfolio.goal > 0) {
         console.log("Goal is too small");
         e.preventDefault();
       }
-    } else if (targetPath==="/setquantity"){
-      if (!(coins.some((coin) => coin.selected === true))) {
+    } else if (targetPath === "/setquantity") {
+      if (!coins.some((coin) => coin.selected === true)) {
         e.preventDefault();
-      } 
-    } else if (targetPath==="/results"){
-      if(coins.filter(coin=>coin.selected===true).every(coin=>coin.qty>0)){
+      }
+    } else if (targetPath === "/results") {
+      if ( coins.some((coin) => coin.selected === true) &&
+        coins
+          .filter((coin) => coin.selected === true)
+          .every((coin) => coin.qty > 0)
+      ) {
         //declaring and updating holdingsValue and holdingsSparkline of local copy of props.coins
         let localState = [...coins];
-        localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsValue=parseFloat(coin.price)*coin.qty);
-        localState.filter(coin=>coin.selected===true).forEach(coin=>coin.holdingsSparkline=coin.sparkline.map(elem=>elem*coin.qty));
+        localState
+          .filter((coin) => coin.selected === true)
+          .forEach(
+            (coin) => (coin.holdingsValue = parseFloat(coin.price) * coin.qty)
+          );
+        localState
+          .filter((coin) => coin.selected === true)
+          .forEach(
+            (coin) =>
+              (coin.holdingsSparkline = coin.sparkline.map(
+                (elem) => elem * coin.qty
+              ))
+          );
         setCoins(localState);
         //
-        let localPortfolio= {...portfolio};
-        localPortfolio.value=0;
-        localPortfolio.sparkline.fill(0,0,25);
-        localState.filter(coin=>coin.selected===true).forEach(coin=>localPortfolio.value+=coin.holdingsValue);
-        localState.filter(coin=>coin.selected===true).forEach(coin=>{
-              for(let i=0; i < coin.sparkline.length; i++){
-                localPortfolio.sparkline[i]+=coin.holdingsSparkline[i];
-              }
+        let localPortfolio = { ...portfolio };
+        localPortfolio.value = 0;
+        localPortfolio.sparkline.fill(0, 0, 25);
+        localState
+          .filter((coin) => coin.selected === true)
+          .forEach((coin) => (localPortfolio.value += coin.holdingsValue));
+        localState
+          .filter((coin) => coin.selected === true)
+          .forEach((coin) => {
+            for (let i = 0; i < coin.sparkline.length; i++) {
+              localPortfolio.sparkline[i] += coin.holdingsSparkline[i];
             }
-          );
+          });
         setPortfolio(localPortfolio);
-      }else{
-        console.log("QTY not set")
+      } else {
+        console.log("QTY not set");
         e.preventDefault();
       }
     }
@@ -104,52 +124,63 @@ function App() {
 
   return (
     <div className="App">
+      <div>
       <Header />
       {APIError ? (
         <APIErrorGaurd APIError={APIError}></APIErrorGaurd>
       ) : (
-        <>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <GoalSetPage portfolio={portfolio} setPortfolio={setPortfolio} handleLinkClick={handleLinkClick}/>
-              }
-            />
-            <Route
-              exact
-              path="/selectcoins"
-              element={
-                <CoinsSelectPage
-                  portfolio={portfolio}
-                  coins={coins}
-                  setCoins={setCoins}
-                  handleLinkClick={handleLinkClick}
-                />
-              }
-            />
-            <Route
-              exact
-              path="/setquantity"
-              element={
-                <CoinsQTYPage
-                  coins={coins}
+        <Main coins={coins}
                   setCoins={setCoins}
                   portfolio={portfolio}
                   setPortfolio={setPortfolio}
-                  handleLinkClick={handleLinkClick}
-                />
-              }
-            />
-            <Route
-              exact
-              path="/results"
-              element={<Results portfolio={portfolio} coins={coins} />}
-            />
-          </Routes>
-        </>
-      )}
+                  handleLinkClick={handleLinkClick}/>
+        // <>
+        //   <Routes>
+        //     <Route
+        //       exact
+        //       path="/"
+        //       element={
+        //         <GoalSetPage
+        //           portfolio={portfolio}
+        //           setPortfolio={setPortfolio}
+        //           handleLinkClick={handleLinkClick}
+        //         />
+        //       }
+        //     />
+        //     <Route
+        //       exact
+        //       path="/selectcoins"
+        //       element={
+        //         <CoinsSelectPage
+        //           portfolio={portfolio}
+        //           coins={coins}
+        //           setCoins={setCoins}
+        //           handleLinkClick={handleLinkClick}
+        //         />
+        //       }
+        //     />
+        //     <Route
+        //       exact
+        //       path="/setquantity"
+        //       element={
+        //         <CoinsQTYPage
+        //           coins={coins}
+        //           setCoins={setCoins}
+        //           portfolio={portfolio}
+        //           setPortfolio={setPortfolio}
+        //           handleLinkClick={handleLinkClick}
+        //         />
+        //       }
+        //     />
+        //     <Route
+        //       exact
+        //       path="/results"
+        //       element={<Results portfolio={portfolio} coins={coins} />}
+        //     />
+        //   </Routes>
+        // </>
+      )}</div>
+      <Footer/>
     </div>
   );
 }

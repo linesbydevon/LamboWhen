@@ -1,8 +1,13 @@
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import CoinCardResults from "../cards/CoinCardResults";
-import { getPercentage, getPercentageChange, isUp, formatNum } from "../../utilities";
+import {
+  getPercentage,
+  getPercentageChange,
+  isUp,
+  formatNum,
+} from "../../utilities";
 
-export default function Results({portfolio,coins}) {
+export default function Results({ portfolio, coins }) {
   let goal = parseFloat(portfolio.goal);
 
   return (
@@ -10,20 +15,31 @@ export default function Results({portfolio,coins}) {
       <section className="results">
         <div className="sectionWrapper">
           <div
-            className={`portfolioResults ${isUp(portfolio.sparkline[24], portfolio.sparkline[0])}`}
+            className={`portfolioResults ${isUp(
+              portfolio.sparkline[24],
+              portfolio.sparkline[0]
+            )}`}
           >
             <div className="header">
               <h2>Your portfolio</h2>
             </div>
             <p className="change">
               24HR: <span className="indicator"></span>
-              {getPercentageChange(portfolio.sparkline[0], portfolio.sparkline[24]).toFixed(2)}
+              {getPercentageChange(
+                portfolio.sparkline[0],
+                portfolio.sparkline[24]
+              ).toFixed(2)}
               %
             </p>
             <h3 className="value">
               ${formatNum(portfolio.value)}
               <br />
-              <span>{coins.filter((elem) => elem.selected).length} {coins.filter((elem) => elem.selected).length > 1 ? "assets":"asset"}</span>
+              <span>
+                {coins.filter((elem) => elem.selected).length}{" "}
+                {coins.filter((elem) => elem.selected).length > 1
+                  ? "assets"
+                  : "asset"}
+              </span>
             </h3>
             <div className="sparkBox">
               <div className="highLow">
@@ -36,9 +52,7 @@ export default function Results({portfolio,coins}) {
                   <br />${formatNum(Math.max(...portfolio.sparkline))}
                 </p>
               </div>
-              <Sparklines
-                data={portfolio.sparkline}
-              >
+              <Sparklines data={portfolio.sparkline}>
                 <SparklinesLine
                   color={
                     portfolio.sparkline[24] > portfolio.sparkline[0]
@@ -84,7 +98,9 @@ export default function Results({portfolio,coins}) {
           <h2 className="assetHeadline">Asset Performance</h2>
           <section className="assetResults">
             {coins.map((coin, index) =>
-              coin.selected ? <CoinCardResults coin={coin} portfolio={portfolio}/> : (
+              coin.selected ? (
+                <CoinCardResults coin={coin} portfolio={portfolio} />
+              ) : (
                 false
               )
             )}

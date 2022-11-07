@@ -3,8 +3,7 @@ import Nav from "./Nav";
 export default function Header(){
   return(
   <header>
-    <h1>LamboWhen?</h1>
-    <Nav/>
+    <h1><span>Lambo</span>When<span>?</span></h1>
   </header>
   )
 }

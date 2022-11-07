@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import ProgressButton from "../elements/ProgressButton";
-export default function GoalSetPage({ portfolio, setPortfolio, coins, handleLinkClick }) {
-  
-
+export default function GoalSetPage({
+  portfolio,
+  setPortfolio,
+  coins,
+  handleLinkClick,
+}) {
   const handleChange = (e) => {
     let localPortfolio = { ...portfolio };
     localPortfolio.goal = e.target.value;
@@ -10,8 +13,8 @@ export default function GoalSetPage({ portfolio, setPortfolio, coins, handleLink
     setPortfolio(localPortfolio);
   };
   return (
-    <main>
-      <div className="sectionWrapper">
+<main>
+      <section className="sectionWrapper">
         <div className="padder">
           <form>
             <label htmlFor="goal">
@@ -29,7 +32,7 @@ export default function GoalSetPage({ portfolio, setPortfolio, coins, handleLink
             ></input>
           </form>
         </div>
-      </div>
+     </section>
       <section className="btnWrapper">
         <ProgressButton
           className={portfolio.goal > 0 ? "clickable btn" : "notClickable btn"}
@@ -38,7 +41,8 @@ export default function GoalSetPage({ portfolio, setPortfolio, coins, handleLink
           disabledMessage="Set goal"
           engagedMessage="All set?"
         />
-      </section>
-    </main>
+       </section>
+       </main>
+  
   );
 }
