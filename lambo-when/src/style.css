@@ -205,6 +205,7 @@ main{
   align-items: center;
   color: rgba(var(--black),1);
   background: rgba(var(--purple),1);
+  border-radius: 16px;
   bottom: 0px;
   transition: all .4s ease;
 }
@@ -712,9 +713,10 @@ footer h2{
   padding: 0 0 1em;
   margin: 0;
   display: flex;
-  justify-content: center;
-  gap: 1em;
+  justify-content: space-around;
   position: relative;
+  max-width: 120px;
+  margin: 0 auto;
 }
 
 .socialLinks svg{
