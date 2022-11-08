@@ -1,7 +1,12 @@
-import { Sparklines, SparklinesLine } from 'react-sparklines';
-import { getPercentage, getPercentageChange, isUp, formatNum } from "../../utilities";
+import { Sparklines, SparklinesLine } from "react-sparklines";
+import {
+  getPercentage,
+  getPercentageChange,
+  isUp,
+  formatNum,
+} from "../../utilities";
 
-export default function CoinCardResults({coin, portfolio}) {
+export default function CoinCardResults({ coin, portfolio }) {
   return (
     <div
       // className={
@@ -11,7 +16,7 @@ export default function CoinCardResults({coin, portfolio}) {
       //     ? "card resultsCard isSame"
       //     : "card resultsCard isDown"
       // }
-      className={`card resultsCard ${isUp(coin.price,coin.sparkline[0])}`}
+      className={`card resultsCard ${isUp(coin.price, coin.sparkline[0])}`}
       key={coin.symbol}
     >
       <div className="coinInfo">
@@ -29,12 +34,14 @@ export default function CoinCardResults({coin, portfolio}) {
       <div className="assetDetails">
         <p className="change">
           24HR: <span className="indicator"></span>
-          {getPercentageChange(coin.sparkline[0],coin.sparkline[24]).toFixed(2)}
+          {getPercentageChange(coin.sparkline[0], coin.sparkline[24]).toFixed(
+            2
+          )}
           %
         </p>
         <h4 className="value">
-          {/* ${parseFloat(coin.price).toFixed(2)} */}
-          ${formatNum(parseFloat(coin.price))}
+          {/* ${parseFloat(coin.price).toFixed(2)} */}$
+          {formatNum(parseFloat(coin.price))}
           <br />
           <span>per coin</span>
         </h4>

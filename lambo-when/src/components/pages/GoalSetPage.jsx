@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ProgressButton from "../elements/ProgressButton";
 export default function GoalSetPage({
   portfolio,
@@ -13,7 +12,7 @@ export default function GoalSetPage({
     setPortfolio(localPortfolio);
   };
   return (
-<main>
+    <main>
       <section className="sectionWrapper">
         <div className="padder">
           <form>
@@ -24,19 +23,19 @@ export default function GoalSetPage({
               </h2>
             </label>
             <div id="goalInputWrapper">
-            <input
-              type="number"
-              name="goal"
-              id="goal"
-              onChange={handleChange}
-              placeholder={portfolio.goal}
-              min={0}
-              max={9999999999999.99}
-            ></input>
+              <input
+                type="number"
+                name="goal"
+                id="goal"
+                onChange={handleChange}
+                placeholder={portfolio.goal}
+                min={0}
+                max={9999999999999.99}
+              ></input>
             </div>
           </form>
         </div>
-     </section>
+      </section>
       <section className="btnWrapper">
         <ProgressButton
           className={portfolio.goal > 0 ? "clickable btn" : "notClickable btn"}
@@ -45,8 +44,7 @@ export default function GoalSetPage({
           disabledMessage="Set goal"
           engagedMessage="All set?"
         />
-       </section>
-       </main>
-  
+      </section>
+    </main>
   );
 }

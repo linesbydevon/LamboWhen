@@ -1,14 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { BASE_URL } from "./global.js";
-import { Route, Routes } from "react-router-dom";
 import Header from "./components/elements/Header";
 import Main from "./components/elements/Main.jsx";
-import GoalSetPage from "./components/pages/GoalSetPage";
 import APIErrorGaurd from "./components/elements/APIErrorGaurd.jsx";
-import CoinsSelectPage from "./components/pages/CoinsSelectPage.jsx";
-import CoinsQTYPage from "./components/pages/CoinsQTYPage.jsx";
-import Results from "./components/pages/Results";
 import Footer from "./components/elements/Footer.jsx";
 import "./style.css";
 
@@ -40,7 +35,7 @@ function App() {
         "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
-    console.log("key " + process.env.REACT_APP_COINRANKING_KEY)
+    console.log("key " + process.env.REACT_APP_COINRANKING_KEY);
     const getResponse = async () => {
       let APIresponse;
       axios
@@ -80,7 +75,8 @@ function App() {
         e.preventDefault();
       }
     } else if (targetPath === "/results") {
-      if ( coins.some((coin) => coin.selected === true) &&
+      if (
+        coins.some((coin) => coin.selected === true) &&
         coins
           .filter((coin) => coin.selected === true)
           .every((coin) => coin.qty > 0)
@@ -126,62 +122,65 @@ function App() {
   return (
     <div className="App">
       <div>
-      <Header />
-      {APIError ? (
-        <APIErrorGaurd APIError={APIError}></APIErrorGaurd>
-      ) : (
-        <Main coins={coins}
-                  setCoins={setCoins}
-                  portfolio={portfolio}
-                  setPortfolio={setPortfolio}
-                  handleLinkClick={handleLinkClick}/>
-        // <>
-        //   <Routes>
-        //     <Route
-        //       exact
-        //       path="/"
-        //       element={
-        //         <GoalSetPage
-        //           portfolio={portfolio}
-        //           setPortfolio={setPortfolio}
-        //           handleLinkClick={handleLinkClick}
-        //         />
-        //       }
-        //     />
-        //     <Route
-        //       exact
-        //       path="/selectcoins"
-        //       element={
-        //         <CoinsSelectPage
-        //           portfolio={portfolio}
-        //           coins={coins}
-        //           setCoins={setCoins}
-        //           handleLinkClick={handleLinkClick}
-        //         />
-        //       }
-        //     />
-        //     <Route
-        //       exact
-        //       path="/setquantity"
-        //       element={
-        //         <CoinsQTYPage
-        //           coins={coins}
-        //           setCoins={setCoins}
-        //           portfolio={portfolio}
-        //           setPortfolio={setPortfolio}
-        //           handleLinkClick={handleLinkClick}
-        //         />
-        //       }
-        //     />
-        //     <Route
-        //       exact
-        //       path="/results"
-        //       element={<Results portfolio={portfolio} coins={coins} />}
-        //     />
-        //   </Routes>
-        // </>
-      )}</div>
-      <Footer/>
+        <Header />
+        {APIError ? (
+          <APIErrorGaurd APIError={APIError}></APIErrorGaurd>
+        ) : (
+          <Main
+            coins={coins}
+            setCoins={setCoins}
+            portfolio={portfolio}
+            setPortfolio={setPortfolio}
+            handleLinkClick={handleLinkClick}
+          />
+          // <>
+          //   <Routes>
+          //     <Route
+          //       exact
+          //       path="/"
+          //       element={
+          //         <GoalSetPage
+          //           portfolio={portfolio}
+          //           setPortfolio={setPortfolio}
+          //           handleLinkClick={handleLinkClick}
+          //         />
+          //       }
+          //     />
+          //     <Route
+          //       exact
+          //       path="/selectcoins"
+          //       element={
+          //         <CoinsSelectPage
+          //           portfolio={portfolio}
+          //           coins={coins}
+          //           setCoins={setCoins}
+          //           handleLinkClick={handleLinkClick}
+          //         />
+          //       }
+          //     />
+          //     <Route
+          //       exact
+          //       path="/setquantity"
+          //       element={
+          //         <CoinsQTYPage
+          //           coins={coins}
+          //           setCoins={setCoins}
+          //           portfolio={portfolio}
+          //           setPortfolio={setPortfolio}
+          //           handleLinkClick={handleLinkClick}
+          //         />
+          //       }
+          //     />
+          //     <Route
+          //       exact
+          //       path="/results"
+          //       element={<Results portfolio={portfolio} coins={coins} />}
+          //     />
+          //   </Routes>
+          // </>
+        )}
+      </div>
+      <Footer />
     </div>
   );
 }
