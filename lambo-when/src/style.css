@@ -263,7 +263,7 @@ h2{
 
 .cardContainer{
   overflow: scroll;
-  max-height: 400px;
+  height: 400px;
   padding-top: 1px;
   width: 100%;
   max-width: 400px;
@@ -829,5 +829,12 @@ footer h2{
 @media screen and (max-width: 400px){
   body{
     font-size: 14px;
+  }
+  .card{
+    max-width: 100%;
+  }
+  .cardContainer{
+    overflow:auto;
+    height: auto;
   }
 }

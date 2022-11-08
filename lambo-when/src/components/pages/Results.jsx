@@ -100,7 +100,7 @@ export default function Results({ portfolio, coins }) {
           <section className="assetResults">
             {coins.map((coin, index) =>
               coin.selected ? (
-                <CoinCardResults coin={coin} portfolio={portfolio} />
+                <CoinCardResults key={index} coin={coin} portfolio={portfolio} />
               ) : (
                 false
               )

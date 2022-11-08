@@ -16,7 +16,9 @@ export default function CoinCard({ coin, index, handleClick }) {
           <div className="check"></div>
         </div>
         <h3>
-          {coin.name} | <span>{coin.symbol}</span>
+        {coin.name === "Internet Computer (DFINITY)"
+            ? "ICP DFINITY " : coin.name === "Wrapped liquid staked Ether 2.0" ? `${coin.symbol} 2.0`
+            : coin.name}{" "}|{" "}<span>{coin.symbol}</span>
         </h3>
       </div>
     </div>
