@@ -6,6 +6,7 @@ import {
   isUp,
   formatNum,
 } from "../../utilities";
+import Donate from "../elements/Donate";
 
 export default function Results({ portfolio, coins }) {
   let goal = parseFloat(portfolio.goal);
@@ -107,6 +108,7 @@ export default function Results({ portfolio, coins }) {
           </section>
         </div>
       </section>
+      <Donate/>
     </main>
   );
 }

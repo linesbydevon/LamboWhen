@@ -23,13 +23,17 @@ export default function GoalSetPage({
                 <span className="accent">in US dollars</span>.
               </h2>
             </label>
+            <div id="goalInputWrapper">
             <input
               type="number"
               name="goal"
               id="goal"
               onChange={handleChange}
               placeholder={portfolio.goal}
+              min={0}
+              max={9999999999999.99}
             ></input>
+            </div>
           </form>
         </div>
      </section>

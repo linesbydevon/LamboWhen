@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: `${BASE_URL}/coi`,
+      url: `${BASE_URL}/coins`,
       params: {
         referenceCurrencyUuid: "yhjMzLPhuIDl",
         timePeriod: "24h",
