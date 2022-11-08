@@ -55,12 +55,11 @@ export default function Results({ portfolio, coins }) {
               </div>
               <Sparklines data={portfolio.sparkline}>
                 <SparklinesLine
-                  color={
-                    portfolio.sparkline[24] > portfolio.sparkline[0]
-                      ? "green"
-                      : "red"
-                  }
-                />
+                  style={
+                    portfolio.sparkline[24] > portfolio.sparkline[0]?
+                    {stroke: "#69ffc7", fill: "#69ffc7", fillOpacity: "1"}:
+                    {stroke: "#ff76b0", fill: "#ff76b0", fillOpacity: "1"}}
+                 />
               </Sparklines>
             </div>
             <div className="portfolioSpecificInfo">

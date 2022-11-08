@@ -9,13 +9,6 @@ import {
 export default function CoinCardResults({ coin, portfolio }) {
   return (
     <div
-      // className={
-      //   parseFloat(coin.price) > coin.sparkline[0]
-      //     ? "card resultsCard isUp"
-      //     : parseFloat(coin.price) === coin.sparkline[0]
-      //     ? "card resultsCard isSame"
-      //     : "card resultsCard isDown"
-      // }
       className={`card resultsCard ${isUp(coin.price, coin.sparkline[0])}`}
       key={coin.symbol}
     >
@@ -60,7 +53,10 @@ export default function CoinCardResults({ coin, portfolio }) {
           data={coin.sparkline}
         >
           <SparklinesLine
-            color={coin.sparkline[24] > coin.sparkline[0] ? "green" : "red"}
+            style={
+              coin.sparkline[24] > coin.sparkline[0] ?
+              {stroke: "#69ffc7", fill: "#69ffc7", fillOpacity: "1"}:
+              {stroke: "#ff76b0", fill: "#ff76b0", fillOpacity: "1"}}
           />
         </Sparklines>
         <div className={`portfolioSpecificInfo`}>

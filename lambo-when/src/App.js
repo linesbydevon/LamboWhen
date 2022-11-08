@@ -35,7 +35,6 @@ function App() {
         "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
-    console.log("key " + process.env.REACT_APP_COINRANKING_KEY);
     const getResponse = async () => {
       let APIresponse;
       axios
@@ -64,7 +63,6 @@ function App() {
 
   const handleLinkClick = (e) => {
     let targetPath = e.target.parentElement.attributes[1].nodeValue;
-    console.log(targetPath);
     if (targetPath === "/selectcoins") {
       if (!portfolio.goal > 0) {
         console.log("Goal is too small");
@@ -133,51 +131,6 @@ function App() {
             setPortfolio={setPortfolio}
             handleLinkClick={handleLinkClick}
           />
-          // <>
-          //   <Routes>
-          //     <Route
-          //       exact
-          //       path="/"
-          //       element={
-          //         <GoalSetPage
-          //           portfolio={portfolio}
-          //           setPortfolio={setPortfolio}
-          //           handleLinkClick={handleLinkClick}
-          //         />
-          //       }
-          //     />
-          //     <Route
-          //       exact
-          //       path="/selectcoins"
-          //       element={
-          //         <CoinsSelectPage
-          //           portfolio={portfolio}
-          //           coins={coins}
-          //           setCoins={setCoins}
-          //           handleLinkClick={handleLinkClick}
-          //         />
-          //       }
-          //     />
-          //     <Route
-          //       exact
-          //       path="/setquantity"
-          //       element={
-          //         <CoinsQTYPage
-          //           coins={coins}
-          //           setCoins={setCoins}
-          //           portfolio={portfolio}
-          //           setPortfolio={setPortfolio}
-          //           handleLinkClick={handleLinkClick}
-          //         />
-          //       }
-          //     />
-          //     <Route
-          //       exact
-          //       path="/results"
-          //       element={<Results portfolio={portfolio} coins={coins} />}
-          //     />
-          //   </Routes>
-          // </>
         )}
       </div>
       <Footer />
