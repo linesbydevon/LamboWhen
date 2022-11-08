@@ -18,7 +18,7 @@ export default function CoinsQTYPage({
 
   return (
     <main className="selectCoins">
-      {coins.some((coin) => coin.selected === true) ? (
+      {portfolio.goal > 0 && coins.some((coin) => coin.selected === true) ? (
         <section>
           <div className="sectionWrapper">
             <div className="padder">
@@ -58,8 +58,10 @@ export default function CoinsQTYPage({
             />
           </div>
         </section>
-      ) : (
+      ) : portfolio.goal > 0 ? (
         <Navigate to="/selectcoins" />
+      ) : (
+        <Navigate to="/" />
       )}
     </main>
   );

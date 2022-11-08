@@ -65,12 +65,19 @@ function App() {
     let targetPath = e.target.parentElement.attributes[1].nodeValue;
     if (targetPath === "/selectcoins") {
       if (!portfolio.goal > 0) {
+
         console.log("Goal is too small");
         e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        
       }
     } else if (targetPath === "/setquantity") {
       if (!coins.some((coin) => coin.selected === true)) {
         e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+    
       }
     } else if (targetPath === "/results") {
       if (
@@ -113,6 +120,9 @@ function App() {
       } else {
         console.log("QTY not set");
         e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        
       }
     }
   };

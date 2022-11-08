@@ -14,7 +14,7 @@ export default function Main({
 }) {
   return (
     <div className="mainWrapper">
-      <ProgressNav handleLinkClick={handleLinkClick}></ProgressNav>
+      <ProgressNav handleLinkClick={handleLinkClick} portfolio={portfolio} coins={coins}></ProgressNav>
       <Routes>
         <Route
           exact
