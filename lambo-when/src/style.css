@@ -31,12 +31,19 @@ html{
 /* ============== */
 
 body{
+  /* background: url("./pattern1.png");
+  background-position: center;
+  background-size: 200%;
+  background-repeat: no-repeat; */
   color: rgba(var(--white),1);
   font-family: 'Satoshi', Helvetica, Arial, sans-serif;
   font-size: 1rem;
 }
 
 .App{
+  background: rgba(var(--black),.95);
+  backdrop-filter: blur(2px);
+  background-repeat: no-repeat;
   padding: 0 0 2rem;
   min-height: 100vh;
   display: flex;
@@ -53,7 +60,7 @@ header{
   align-items: center;
   margin: 0 auto;
   border-bottom: 1px solid rgba(var(--tint1),1);
-  box-shadow: 0 0 24px 24px rgba(0,0,0,.6);
+  box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.08);
 }
 
 header h1{
@@ -115,14 +122,20 @@ header ul a{
   margin-top: 40px;
 }
 
+main{
+ 
+
+}
+
 .sectionWrapper{
+  background: rgba(var(--black),.8);
+  backdrop-filter: blur(10px);
   max-width: 640px;
   margin: 0 auto;
   padding: 0;
   border-radius: 16px;
-  box-shadow: -6px -4px 10px 1px rgba(255,255,255,0.04),8px 8px 10px 1px rgba(0,0,0,0.32);
   border: 1px solid rgba(var(--tint1),1);
-  box-shadow: 0px 0px 16px 16px rgba(0,0,0,0.32);
+  box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.08);
 }
 
 .accent{
@@ -150,8 +163,6 @@ header ul a{
   border-radius: 16px;
   width: 168px;
   height: 40px;
-  box-shadow: -5px -3px 10px 1px rgba(255,255,255,0.04),8px 8px 10px 1px rgba(0,0,0,0.32);
-  box-shadow: 0px 0px 16px 16px rgba(0,0,0,0.32);
   text-align: center;
   text-decoration: none;
   font-weight: bold;
@@ -165,6 +176,8 @@ header ul a{
 
 .notClickable{
   cursor: default;
+  background: rgba(var(--black),.8);
+  backdrop-filter: blur(10px);
 }
 
 #addCoins{
@@ -177,6 +190,8 @@ header ul a{
   top: 0px;
   transition: all .4s ease;
 }
+
+
 
 .clickable #addCoins{
   top: -40px;
@@ -653,6 +668,45 @@ footer{
 footer h2{
   color: rgba(var(--tint5));
   padding-bottom: 0px;
+}
+
+.APIError{
+  border: 1px solid rgba(var(--red),1);
+  overflow: hidden;
+}
+
+.APIError h2{
+  padding: 1rem;
+}
+
+.APIError .sparkBox{
+  overflow: hidden;
+  position: relative;
+}
+
+.APIError .sparkBox svg{
+  position: relative;
+  bottom: -12px;
+}
+
+.APIError .message{
+  color: rgba(var(--black),1);
+  background: rgba(var(--red),1);
+  padding: .5rem .5rem 1rem;
+}
+.APIError .message div{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.APIError h3, .APIError p{
+  margin-bottom: 1rem;
+}
+
+.APIError code{
+  background: rgba(var(--black),.16);
+  border-bottom: 1px solid rgba(var(--black),1);
+  padding: .25rem;
 }
 
 @media screen and (max-width: 400px){
