@@ -36,10 +36,11 @@ function App() {
         offset: "0",
       },
       headers: {
-        "X-RapidAPI-Key": "618491a8aemsh20b1110ec97d4ffp141f42jsn7f8443f4955c",
+        "X-RapidAPI-Key": process.env.REACT_APP_COINRANKING_KEY,
         "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
       },
     };
+    console.log("key " + process.env.REACT_APP_COINRANKING_KEY)
     const getResponse = async () => {
       let APIresponse;
       axios

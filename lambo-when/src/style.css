@@ -31,10 +31,6 @@ html{
 /* ============== */
 
 body{
-  /* background: url("./pattern1.png");
-  background-position: center;
-  background-size: 200%;
-  background-repeat: no-repeat; */
   color: rgba(var(--white),1);
   font-family: 'Satoshi', Helvetica, Arial, sans-serif;
   font-size: 1rem;
@@ -128,7 +124,7 @@ main{
   opacity: 0;
   margin: 0 auto;
   position: relative;
-  top: 16px;
+  top: 8px;
   padding: 0 8px;
   animation: contentAppear 1.8s ease .2s forwards;
 }
@@ -196,8 +192,6 @@ main{
   top: 0px;
   transition: all .4s ease;
 }
-
-
 
 .clickable #addCoins{
   top: -40px;
@@ -294,7 +288,7 @@ h2{
 @keyframes contentAppear{
   from{
     opacity: 0;
-    top: 16px
+    top: 8px
   }to{
     opacity: 1;
     top: 0px;
@@ -323,10 +317,6 @@ h2{
 
 .coinInfo h3{
   font-size: 1.25em;
-}
-
-.card h3, .card p, .card form, .card .iconContainer{
-  
 }
 
 .card h3 span{
@@ -558,6 +548,14 @@ circle{
   position: relative;
 }
 
+.portfolioResults.isDown{
+  background: linear-gradient(rgba(var(--black),0) 83%,rgba(var(--red),1) 83%);
+}
+
+.portfolioResults.isUp{
+  background: linear-gradient(rgba(var(--black),0) 83%,rgba(var(--green),1) 83%);
+}
+
 .portfolioResults .header{
   padding: 1rem;
   box-shadow: 0 24px 18px rgba(var(--tint1),.20);
@@ -580,7 +578,7 @@ circle{
   width: 110%;
   position: relative;
   right: 5%;
-  bottom: -11px;
+  bottom: -12px;
 }
 
 .isDown .portfolioSpecificInfo{
@@ -769,6 +767,12 @@ footer h2{
   border-bottom: 1px solid rgba(var(--black),1);
   padding: .25rem;
   font-size: .8rem;
+}
+
+.APIError h2 .indicator{
+  width: 12px;
+  height: 12px;
+  bottom: 6px;
 }
 
 .donate{
