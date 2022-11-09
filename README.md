@@ -2,9 +2,7 @@
 An app for accessing data related to your crypto portfolio goals
 
 ## About
-I want to develop an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of users.
-
-Lambo when is an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of crypto holder.
+LamboWhen? is an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of crypto holder.
 
 It works by receiving data from the API which returns an array of the top 50 crypto projects by market cap in addition to receiving user input. 
 
