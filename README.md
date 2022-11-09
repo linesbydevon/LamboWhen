@@ -1,30 +1,14 @@
 # LamboWhen
 An app for accessing data related to your crypto portfolio goals
 
-## Proposal
+## About
 I want to develop an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of users.
 
-At a bare minimum the app should:
+Lambo when is an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of crypto holder.
 
-1. Allow a user to submit a goal value for their portfolio.
+It works by receiving data from the API which returns an array of the top 50 crypto projects by market cap in addition to receiving user input. 
 
-2. Allow the user to select the coins they currently own from a list of coins rendered from the API call.
-
-3. Allow users to select how much of each coin they currently own.
-
-4. Evaluate the current price of the portfolio to determine relevant data including how much their portfolio would need to increase to meet their goal, the current price and recent performance of each coin in their portfolio, and the recent performance of their portfolio as a whole. 
-
-### User Stories
-"I want to see how all my crypto investments are performing in one place."
-
-"I want to determine how far away I am from my target ROI value."
-
-"I want to simple dashboard that displays only the projects I'm invested in without data from a bunch of other chains."
-
-## How to get started
-My first concern, of course, is ensuring that I can reliably pull the data I need in order to deliver the results a user expects. Luckily, as far as I can tell, my API calls seem to be returning the information I need for funcitonality. Namely, price and recently performance in a sparkline array.
-
-Below is an example response that I cut a bit short to include only one out of the fifty coins in the object.
+Example API response below:
 
 ```
 {
@@ -84,25 +68,77 @@ Below is an example response that I cut a bit short to include only one out of t
 }
 ```
 
-After a successful connection is made, the next priority will be determining what information we want to display and writing the logic to manipulate and return data in response to user input. 
+### Relevant API data
 
-## TRELLO BOARD
+Each array item is an object that includes the following relevant data:
 
-My Trello board for this project can be [found here](https://trello.com/b/AOKz1Nkf/lambowhen).
+1. Coin name, symbol, and icon.
 
-## WIREFRAMES
+2. Coin price at time of API call.
 
-Below I've included initial concepting (subject to change).
-![Home](./proposalAssets/img/landing.png)
-![Goal input](./proposalAssets/img/setGoal.png)
-![Select coins input](./proposalAssets/img/setCoins.png)
-![Results](./proposalAssets/img/results.png)
+3. Coin performance over a 24 hour period.
 
-### With component mapping
+### Relevant user input
 
-TBD
+The user inputs the following data:
 
-## Component frameworks I intend to use
+1. A target portfolio value in USD.
+
+2. The crypto assets they're currently holding (from the returned array).
+
+3. The quantity of each crypto they're currently holding.
+
+### How API data and user input work together
+
+The app basically revolves around the following states:
+
+```
+  const [portfolio, setPortfolio] = useState({
+    goal: 0,
+    value: 0,
+    sparkline: new Array(25).fill(0, 0, 25),
+  });
+  const [coins, setCoins] = useState([]);
+```
+
+The portfolio state is initialized with no goal, no value, and an array filled with 25 zeros. All of which is updated based on user input.
+
+The coins state is initialized as an empty array. When a user hits page, the first thing that happens upon getting a response from the API is that the response is mapped to return each object's spread properties in addition to new properties, for better or worse. Upon later consideration I realize this makes the app less dynamic and more error-prone so this will have to be updated. That being said, it currently looks something like this:
+
+```
+APIresponse = response.data.data.coins;
+  setCoins(
+    APIresponse.map((coin) => {
+      return {
+        ...coin,
+        selected: false,
+        qty: 0,
+        holdingsValue: 0,
+        holdingsSparkline: [],
+      };
+ })
+ ```
+
+ As the user makes their way through the steps of inputting information these states are updating to reflect the amount of each asset owned. This information is then used to determine the total portfolio value and performance, in addition to the value of the shares the user holds. 
+
+
+### The process
+
+#### Setting a goal
+![Screenshot of input page for setting a goal](./readMeAssets/img/setGoal.jpg)
+
+
+#### Selecting coins
+![Screenshot of input page for selecting coins owned](./readMeAssets/img/selectCoins.jpg)
+
+
+#### Setting quantity
+![Screenshot of input page for setting quantity of coins owned](./readMeAssets/img/setQuantity.jpg)
+
+#### View results
+![Screenshot of results page](./readMeAssets/img/results.jpg)
+
+## Component frameworks used
 
 [React Sparklines](https://github.com/borisyankov/react-sparklines) enables easy svg rendering of sparklines from an array of data points. 
 
