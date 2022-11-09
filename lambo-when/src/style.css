@@ -812,6 +812,11 @@ footer h2{
   border-bottom: 1px solid rgba(var(--purple),1);
 }
 
+.donate h4{
+  color: rgba(var(--tint5),1);
+  margin-bottom: .5rem;
+}
+
 .donate .copied:after{
   content: "Copied to clipboard";
   color: rgba(var(--white),1);

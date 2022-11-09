@@ -54,7 +54,7 @@ export default function CoinCardResults({ coin, portfolio }) {
         >
           <SparklinesLine
             style={
-              coin.sparkline[24] > coin.sparkline[0] ?
+              coin.price > coin.sparkline[0] ?
               {stroke: "#69ffc7", fill: "#69ffc7", fillOpacity: "1"}:
               {stroke: "#ff76b0", fill: "#ff76b0", fillOpacity: "1"}}
           />

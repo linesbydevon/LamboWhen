@@ -6,7 +6,6 @@ export default function CoinsQTYPage({
   portfolio,
   coins,
   setCoins,
-  setPortfolio,
   handleLinkClick,
 }) {
   const handleChange = (e) => {

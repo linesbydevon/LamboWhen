@@ -17,6 +17,7 @@ export default function Donate() {
         <br />
         Consider making a donation today!
       </h3>
+      <h4>Donate BTC</h4>
       <img className="QRcode" src={QR_BTC} alt="" />
       <code onClick={copyToClipboard}>1BjvqJ3XGpvSB5Gex5ZY26yLgdy83P3xo2</code>
     </div>
