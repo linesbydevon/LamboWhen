@@ -123,18 +123,18 @@ APIresponse = response.data.data.coins;
 ### The process
 
 #### Setting a goal
-![Screenshot of input page for setting a goal](./readMeAssets/img/setGoal.jpg)
+![Screenshot of input page for setting a goal](./readmeAssets/img/setGoal.jpg)
 
 
 #### Selecting coins
-![Screenshot of input page for selecting coins owned](./readMeAssets/img/selectCoins.jpg)
+![Screenshot of input page for selecting coins owned](./readmeAssets/img/selectCoins.jpg)
 
 
 #### Setting quantity
-![Screenshot of input page for setting quantity of coins owned](./readMeAssets/img/setQuantity.jpg)
+![Screenshot of input page for setting quantity of coins owned](./readmeAssets/img/setQuantity.jpg)
 
 #### View results
-![Screenshot of results page](./readMeAssets/img/results.jpg)
+![Screenshot of results page](./readmeAssets/img/results.jpg)
 
 ## Component frameworks used
 
