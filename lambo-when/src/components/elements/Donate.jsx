@@ -7,7 +7,6 @@ export default function Donate() {
     target.setAttribute("class", "copied");
     setTimeout(() => {
       target.removeAttribute("class");
-      console.log(e.currentTarget);
     }, 1600);
   };
   return (

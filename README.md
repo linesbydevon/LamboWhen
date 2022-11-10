@@ -2,7 +2,7 @@
 An app for accessing data related to your crypto portfolio goals
 
 ## About
-LamboWhen? is an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of crypto holder.
+LamboWhen? is an app that leverages [Coinranking API](https://developers.coinranking.com/api) to display information about the investments of crypto holder and can be found [deployed on netlify](https://lambowhen.netlify.app/).
 
 It works by receiving data from the API which returns an array of the top 50 crypto projects by market cap in addition to receiving user input. 
 
@@ -101,7 +101,7 @@ The app basically revolves around the following states:
 
 The portfolio state is initialized with no goal, no value, and an array filled with 25 zeros. All of which is updated based on user input.
 
-The coins state is initialized as an empty array. When a user hits page, the first thing that happens upon getting a response from the API is that the response is mapped to return each object's spread properties in addition to new properties, for better or worse. Upon later consideration I realize this makes the app less dynamic and more error-prone so this will have to be updated. That being said, it currently looks something like this:
+The coins state is initialized as an empty array but is set when the API response is mapped to return each object's spread properties in addition to new properties, for better or worse. Upon later consideration I realize this makes the app less dynamic and more error-prone so this will have to be updated. That being said, it currently looks something like this:
 
 ```
 APIresponse = response.data.data.coins;
@@ -117,7 +117,7 @@ APIresponse = response.data.data.coins;
  })
  ```
 
- As the user makes their way through the steps of inputting information these states are updating to reflect the amount of each asset owned. This information is then used to determine the total portfolio value and performance, in addition to the value of the shares the user holds. 
+ As the user makes their way through the steps of inputting information these states update to reflect the amount of each asset owned. This information is then used to determine the total portfolio value and performance, in addition to the value of the shares the user holds. 
 
 
 ### The process
@@ -135,6 +135,22 @@ APIresponse = response.data.data.coins;
 
 #### View results
 ![Screenshot of results page](./readmeAssets/img/results.jpg)
+
+## Cloning and/or contributing
+
+To tinker with the code yourself you can follow these steps:
+
+1. Fork this repo to your own and clone it down to your computer.
+
+2. Run 'npm i' to install all necessary packages and
+
+3. Generate an Coinranking API key on RapidAPI and save it in an .env file on the root directory of the react app. Name it `REACT_APP_COINRANKING_KEY`.
+
+4. Run npm start to start a local server.
+
+5. Update code as necessary/as you desire. If you'd like to make a pull request then commit with a detailed message after each change. Requests with multiple nontrivial changes or without details commit messages will be rejected without review. 
+
+The app should run in your
 
 ## Component frameworks used
 

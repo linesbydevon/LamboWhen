@@ -33,8 +33,7 @@ export default function CoinCardResults({ coin, portfolio }) {
           %
         </p>
         <h4 className="value">
-          {/* ${parseFloat(coin.price).toFixed(2)} */}$
-          {formatNum(parseFloat(coin.price))}
+          ${formatNum(parseFloat(coin.price))}
           <br />
           <span>per coin</span>
         </h4>

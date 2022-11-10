@@ -8,7 +8,6 @@ export default function GoalSetPage({
   const handleChange = (e) => {
     let localPortfolio = { ...portfolio };
     localPortfolio.goal = e.target.value;
-    console.log(localPortfolio);
     setPortfolio(localPortfolio);
   };
   return (
