@@ -146,9 +146,9 @@ To tinker with the code yourself you can follow these steps:
 
 3. Generate an Coinranking API key on RapidAPI and save it in an .env file on the root directory of the react app. Name it `REACT_APP_COINRANKING_KEY`.
 
-4. Run npm start to start a local server.
+4. Run `npm start` to start a local server.
 
-5. Update code as necessary/as you desire. If you'd like to make a pull request then commit with a detailed message after each change. Requests with multiple nontrivial changes or without details commit messages will be rejected without review. 
+5. Update code as necessary/as you desire. If you'd like to make a pull request then commit with a detailed message after each change. Requests with multiple nontrivial changes or without detailed commit messages will be rejected without review. 
 
 The app should run in your
 
