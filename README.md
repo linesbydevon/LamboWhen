@@ -150,8 +150,6 @@ To tinker with the code yourself you can follow these steps:
 
 5. Update code as necessary/as you desire. If you'd like to make a pull request then commit with a detailed message after each change. Requests with multiple nontrivial changes or without detailed commit messages will be rejected without review. 
 
-The app should run in your
-
 ## Component frameworks used
 
 [React Sparklines](https://github.com/borisyankov/react-sparklines) enables easy svg rendering of sparklines from an array of data points. 
